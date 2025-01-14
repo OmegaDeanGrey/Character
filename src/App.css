@@ -13,8 +13,13 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
+#Homepage {
+  color: red;
+  font-size: 100px;
+}
+
+/* .App-header {
+  background-color: rgba(99, 114, 168, 0.9);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -22,10 +27,12 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+  text-shadow: 6px, 6px, 6px, rgb(254, 185, 185);
+  font-weight: bolder;
+} */
 
 .App-link {
-  color: #61dafb;
+  color: #a6d0dc;
 }
 
 @keyframes App-logo-spin {
@@ -34,5 +41,311 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* #bgall {
+  background-image: url("../public/Manns.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  opacity: 0.9;
+} */
+
+.containerdiv {
+  /* height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; */
+  font-weight: bolder;
+  display: grid;
+  justify-content: center;
+  color: aliceblue;
+  align-items: center;
+  height: 70%;
+  font-size: 28px;
+}
+
+#MageVid {
+  z-index: -200000;
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-width: contain;
+  max-height: cover;
+  position: absolute;
+  opacity: 0.9;
+  height: 1291px;
+  margin: 0px;
+}
+
+#FighterVid {
+  z-index: -110000;
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-width: contain;
+  max-height: cover;
+  position: absolute;
+  opacity: 0.9;
+  height: 1291px;
+  margin: 0px;
+}
+
+.containerdiv3 {
+  height: 92vh;
+  width: 100%;
+  background-image: url("../public/Hands.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  font-weight: bolder;
+  display: grid;
+  justify-content: center;
+  color: aliceblue;
+  align-items: center;
+  position: absolute;
+  font-size: 28px;
+  z-index: -3000000;
+}
+
+.containerdiv2 {
+  height: 92vh;
+  width: 100%;
+  background-image: url("../public/Hands.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  font-weight: bolder;
+  display: grid;
+  justify-content: center;
+  color: aliceblue;
+  align-items: center;
+  position: absolute;
+  font-size: 28px;
+  z-index: -3000000;
+}
+
+/* #ClericVid { */
+/* height: 94vh;
+  width: 100vh;
+  font-weight: bolder;
+  display: grid;
+  justify-content: center;
+  color: aliceblue;
+  align-items: center;
+  position: relative;
+  font-size: 28px;
+  z-index: 3000000;
+} */
+
+#ClericSelectButton {
+  font-size: 50px;
+  width: 702px;
+  margin: 20px;
+  padding: 14px;
+  color: rgb(145, 156, 74);
+  background-color: rgb(233, 200, 201);
+  text-shadow: 2px 2px white;
+  border: 15px rgb(197, 191, 105) double;
+  border-radius: 40px;
+  font-weight: bolder;
+  font-family: "Gill Sans", "Gill Sans MT", C;
+}
+
+#ClericSelectButton:hover {
+  font-size: 50px;
+  width: 702px;
+  margin: 20px;
+  padding: 14px;
+  color: rgb(236, 242, 199);
+  background: linear-gradient(
+    rgb(251, 250, 250),
+    rgb(233, 200, 227),
+    rgb(241, 248, 156)
+  );
+  text-shadow: 2px 2px rgb(46, 42, 42);
+  border: 15px rgb(197, 191, 105) double;
+  border-radius: 40px;
+  font-weight: bolder;
+  font-family: "Gill Sans", "Gill Sans MT", C;
+}
+
+#ClericbttButton {
+  font-size: 50px;
+  width: 702px;
+  margin: 20px;
+  padding: 14px;
+  color: rgb(145, 156, 74);
+  background-color: rgb(233, 200, 201);
+  text-shadow: 2px 2px white;
+  border: 15px rgb(197, 191, 105) double;
+  border-radius: 40px;
+  font-weight: bolder;
+  font-family: "Gill Sans", "Gill Sans MT", C;
+}
+
+#atpButton {
+  font-size: 50px;
+  width: 702px;
+  margin: 20px;
+  padding: 14px;
+  background-color: rgb(96, 117, 96);
+  text-shadow: 2px 2px white;
+  border: 15px black double;
+  border-radius: 40px;
+  font-weight: bolder;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+#atpButton:hover {
+  font-size: 50px;
+  width: 702px;
+  margin: 20px;
+  padding: 14px;
+  background-image: url("../public/Ivy.png");
+  opacity: 0.7;
+  text-shadow: 2px 2px white;
+  border: 15px black double;
+  border-radius: 40px;
+  font-weight: bolder;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+#MagebttButton {
+  font-size: 50px;
+  width: 702px;
+  margin: 20px;
+  padding: 14px;
+  background-color: rgb(96, 117, 96);
+  text-shadow: 2px 2px white;
+  border: 15px black double;
+  border-radius: 40px;
+  font-weight: bolder;
+  font-family: "Gill Sans", "Gill Sans MT", C;
+}
+
+#FighterbttButton {
+  font-size: 50px;
+  width: 702px;
+  margin: 20px;
+  padding: 14px;
+  color: rgb(199, 107, 122);
+  background-color: rgb(160, 3, 11);
+  text-shadow: 2px 2px rgb(19, 18, 18);
+  border: 15px rgb(211, 152, 152) double;
+  border-radius: 40px;
+  font-weight: bolder;
+  font-family: "Gill Sans", "Gill Sans MT", C;
+}
+
+#MagebttButton:hover {
+  font-size: 50px;
+  width: 702px;
+  margin: 20px;
+  padding: 14px;
+
+  opacity: 0.7;
+  text-shadow: 2px 2px white;
+  border: 15px rgb(232, 176, 176) double;
+  border-radius: 40px;
+  font-weight: bolder;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+#FighterbttButton:hover {
+  font-size: 50px;
+  width: 702px;
+  margin: 20px;
+  padding: 14px;
+  background-image: url("../public/FireFighter.png");
+  text-shadow: 2px 2px white;
+  border: 15px rgb(235, 199, 199) double;
+  border-radius: 40px;
+  font-weight: bolder;
+  font-family: "Gill Sans", "Gill Sans MT", C;
+  opacity: 0.75;
+}
+
+#FighterSelectButton {
+  font-size: 50px;
+  width: 702px;
+  margin: 20px;
+  padding: 14px;
+  color: rgb(234, 101, 101);
+  background-color: rgb(160, 3, 11);
+  text-shadow: 2px 2px white;
+  border: 15px rgb(235, 202, 202) double;
+  border-radius: 40px;
+  font-weight: bolder;
+  font-family: "Gill Sans", "Gill Sans MT", C;
+}
+
+#FighterSelectButton:hover {
+  font-size: 50px;
+  width: 702px;
+  margin: 20px;
+  background-image: url("../public/FireFighter.png");
+  text-shadow: 2px 2px white;
+  border: 15px rgb(205, 170, 170) double;
+  border-radius: 40px;
+  font-weight: bolder;
+  font-family: "Gill Sans", "Gill Sans MT", C;
+  opacity: 0.75;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.containerdiv4 {
+}
+
+#Summoner1 {
+  animation: "fadeIn2 2s ease-out";
+}
+
+#Summoner2 {
+  animation: "fadeIn3 5s ease-out";
+}
+
+#Summoner3 {
+  animation: "fadeIn4 9s ease-out";
+}
+
+@keyframes fadeIn2 {
+  from {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes fadeIn3 {
+  from {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes fadeIn4 {
+  from {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }

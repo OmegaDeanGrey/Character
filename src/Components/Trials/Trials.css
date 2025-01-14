@@ -1,0 +1,583 @@
+#OuterGrid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../../../public/Portal.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+
+.TrialButtonTop {
+  font-size: 40px;
+  height: 280px;
+  width: 300px;
+  position: relative;
+  border-radius: 30px;
+  margin-bottom: 500px;
+}
+
+.TrialButtonBottom {
+  font-size: 40px;
+  height: 280px;
+  width: 300px;
+  position: relative;
+  border-radius: 30px;
+  margin-top: 400px;
+  margin-left: -200px;
+}
+
+#TrialButtonOne {
+  background-image: url("../../../public/Fire.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: azure;
+  font-weight: bolder;
+  text-shadow: 3px 3px black;
+  font-size: 40px;
+  border: 10px black double;
+  opacity: 0.7;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+#TrialButtonOne:hover {
+  background-image: url("../../../public/Fire.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: azure;
+  font-weight: bolder;
+  text-shadow: 3px 3px black;
+  font-size: 40px;
+  border: 10px rgb(250, 246, 246) double;
+  opacity: 1;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+#TrialButtonTwo {
+  background-image: url("../../../public/Water.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: azure;
+  font-weight: bolder;
+  text-shadow: 3px 3px black;
+  font-size: 60px;
+  border: 10px black double;
+  opacity: 0.7;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+#TrialButtonTwo:hover {
+  background-image: url("../../../public/Water.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: azure;
+  font-weight: bolder;
+  text-shadow: 3px 3px black;
+  font-size: 60px;
+  border: 10px rgb(250, 246, 246) double;
+  opacity: 1;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+#TrialButtonThree {
+  background-image: url("../../../public/Rock.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: azure;
+  font-weight: bolder;
+  text-shadow: 3px 3px black;
+  font-size: 35px;
+  border: 10px black double;
+  opacity: 0.7;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+#TrialButtonThree:hover {
+  background-image: url("../../../public/Rock.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: azure;
+  font-weight: bolder;
+  text-shadow: 3px 3px black;
+  font-size: 45px;
+  border: 10px rgb(250, 246, 246) double;
+  opacity: 1;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+#TrialButtonFour {
+  background-image: url("../../../public/Storm.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: azure;
+  font-weight: bolder;
+  text-shadow: 3px 3px black;
+  font-size: 50px;
+  border: 10px black double;
+  opacity: 0.7;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+#TrialButtonFour:hover {
+  background-image: url("../../../public/Storm.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: azure;
+  font-weight: bolder;
+  text-shadow: 3px 3px black;
+  font-size: 50px;
+  border: 10px rgb(250, 246, 246) double;
+  opacity: 1;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+#TrialButtonFive {
+  background-image: url("../../../public/Forest.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: azure;
+  font-weight: bolder;
+  text-shadow: 3px 3px black;
+  font-size: 50px;
+  border: 10px black double;
+  opacity: 0.7;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+#TrialButtonFive:hover {
+  background-image: url("../../../public/Forest.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: azure;
+  font-weight: bolder;
+  text-shadow: 3px 3px black;
+  font-size: 50px;
+  border: 10px rgb(250, 246, 246) double;
+  opacity: 1;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+#TrialButtonSix {
+  background-image: url("../../../public/Kingdom.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: azure;
+  font-weight: bolder;
+  text-shadow: 3px 3px black;
+  font-size: 45px;
+  border: 10px black double;
+  opacity: 0.7;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+#TrialButtonSix:hover {
+  background-image: url("../../../public/Kingdom.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: azure;
+  font-weight: bolder;
+  text-shadow: 3px 3px black;
+  font-size: 45px;
+  border: 10px rgb(250, 246, 246) double;
+  opacity: 1;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+#OneBodyDiv {
+  height: 88vh;
+  width: 100%;
+}
+
+#TwoBodyDiv {
+  height: 88vh;
+  width: 100%;
+}
+
+#bgOne {
+  background-image: url("../../../public/FireStage.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 800px;
+  width: 1800px;
+  overflow: hidden;
+  z-index: -9999;
+  display: grid;
+  justify-content: center;
+}
+
+#bgTwo {
+  background-image: url("../../../public/Rock.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 800px;
+  width: 1800px;
+  overflow: hidden;
+  z-index: -9999;
+  display: grid;
+  justify-content: center;
+
+  padding-top: 50px;
+}
+
+#T1 {
+  height: 10px;
+}
+
+#WisdomQuiz {
+  height: 200px;
+}
+
+#WisdomText {
+  color: antiquewhite;
+  font-size: 21px;
+  font-weight: bold;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  text-shadow: 3px 2px rgb(10, 4, 5);
+}
+
+#AlignmentText {
+  color: antiquewhite;
+  font-size: 21px;
+  font-weight: bold;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  text-shadow: 3px 2px rgb(10, 4, 5);
+}
+
+#WisdomTitle {
+  color: rgb(227, 194, 150);
+  font-size: 31px;
+  font-weight: bolder;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  text-shadow: 3px 2px rgb(10, 4, 5);
+}
+
+#AlignmentTitle {
+  color: white;
+  text-shadow: 3px 3px grey;
+  font-size: 34px;
+  font-weight: bold;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+#QuizButton {
+  height: 200px;
+  width: 300px;
+  background-color: antiquewhite;
+  border: 15px black double;
+  border-radius: 30px;
+  font-size: 29px;
+  font-weight: bolder;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-shadow: 2px 3px rgb(122, 113, 113);
+}
+
+#QuizButton:hover {
+  height: 200px;
+  width: 300px;
+  background-color: rgb(242, 196, 155);
+  border: 15px black double;
+  border-radius: 30px;
+  font-size: 39px;
+  font-weight: bolder;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  overflow: hidden;
+  text-shadow: 2px 3px rgb(197, 192, 192);
+}
+
+#AlignmentGoBackButton {
+  height: 130px;
+  width: 230px;
+  background-color: rgb(23, 19, 14);
+  border: 15px rgb(150, 120, 120) double;
+  border-radius: 30px;
+  font-size: 29px;
+  font-weight: bolder;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-shadow: 2px 3px rgb(122, 113, 113);
+  color: lightgrey;
+}
+
+#AlignmentGoBackButton:hover {
+  height: 130px;
+  width: 230px;
+  background-color: rgb(95, 58, 102);
+  border: 15px rgb(238, 232, 232) double;
+  border-radius: 30px;
+  font-weight: bolder;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-shadow: 2px 3px rgb(122, 113, 113);
+  color: rgb(198, 156, 198);
+  overflow: hidden;
+  font-size: 34px;
+}
+
+#WisdomGoBackButton {
+  height: 130px;
+  width: 230px;
+  background-color: rgb(216, 207, 197);
+  border: 15px rgb(212, 144, 144) double;
+  border-radius: 30px;
+  font-size: 29px;
+  font-weight: bolder;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-shadow: 3px 3px rgb(239, 223, 223);
+  color: black;
+}
+
+#WisdomGoBackButton:hover {
+  height: 130px;
+  width: 230px;
+  background-color: rgb(214, 133, 140);
+  border: 15px rgb(231, 172, 10) double;
+  border-radius: 30px;
+  font-weight: bolder;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-shadow: 3px 3px rgb(122, 113, 113);
+  color: rgb(3, 3, 3);
+  overflow: hidden;
+  font-size: 34px;
+}
+
+.quiz-container {
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+}
+
+#BgQuiz {
+  background-image: url("../../../public/Kingdom.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  position: relative;
+}
+
+.question-section {
+  font-size: 60px;
+  display: grid;
+  justify-content: center;
+  margin: 20px;
+}
+
+.question-count {
+  color: rgb(30, 30, 174);
+  text-shadow: 2px 2px white;
+  font-size: 38px;
+  font-weight: bolder;
+  margin: 15px;
+}
+
+.question-text {
+  font-size: 60px;
+  font-weight: bold;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: rgb(93, 134, 170);
+  text-shadow: 3px 3px white;
+  overflow: hidden;
+  animation: typewriter 4s steps(60), blink 300ms steps(33) infinite normal;
+  border-right: 5px solid black;
+  height: 70px;
+}
+
+@keyframes typewriter {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+.answer-section {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 80px;
+  position: relative;
+}
+
+.QuizAnswerButtons {
+  font-size: 30px;
+  height: 230px;
+  width: 310px;
+  background-color: rgb(6, 26, 42);
+  padding: 15px;
+  color: aliceblue;
+  border: 13px white double;
+  border-radius: 30px;
+  text-shadow: 3px 3px grey;
+  font-weight: bold;
+  animation: fadeIn 7s ease-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.QuizAnswerButtons:hover {
+  font-size: 44px;
+  height: 230px;
+  width: 310px;
+  background-color: rgb(36, 98, 150);
+  padding: 15px;
+  color: aliceblue;
+  border: 13px white double;
+  border-radius: 30px;
+  text-shadow: 3px 3px grey;
+  overflow: hidden;
+  font-weight: bolder;
+}
+
+.score-section {
+  font-size: 90px;
+  font-weight: bold;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: rgb(14, 131, 233);
+  text-shadow: 3px 3px white;
+  overflow: hidden;
+  animation: typewriter2 3s steps(60), blink2 3000ms steps(33) infinite normal;
+  border-right: 5px solid black;
+  height: 12vh;
+  width: 100%;
+  display: grid;
+}
+
+@keyframes typewriter2 {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 80%;
+  }
+}
+
+#QuizGoBackButtonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+#ScoreContaioer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 20px black double;
+  height: 78vh;
+  margin: 20px;
+}
+
+#QuizGoBackButton {
+  font-size: 22px;
+  height: 130px;
+  width: 210px;
+  background-color: rgb(7, 81, 141);
+  padding: 25px;
+  color: aliceblue;
+  border: 13px white double;
+  border-radius: 30px;
+  text-shadow: 3px 3px grey;
+  font-weight: bold;
+  margin-top: 100px;
+}
+
+#QuizGoBackButton:hover {
+  font-size: 28px;
+  height: 130px;
+  width: 210px;
+  background-color: rgb(94, 174, 239);
+  padding: 25px;
+  color: aliceblue;
+  border: 13px rgb(18, 18, 17) double;
+  border-radius: 30px;
+  text-shadow: 3px 3px grey;
+  font-weight: bold;
+  margin-top: 100px;
+  overflow: hidden;
+}
+
+#ThreeBodyDiv {
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+}
+
+#bgThree {
+  background-image: url("../../../public/Forest.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 800px;
+  width: 1800px;
+  overflow: hidden;
+  z-index: -9999;
+  display: grid;
+  justify-content: center;
+
+  padding-top: 50px;
+}
+
+#LifeForceTitle {
+  font-size: 40px;
+  color: aquamarine;
+  font-weight: bolder;
+  text-shadow: 3px 3px black;
+}
+
+#LifeForceText {
+  font-size: 27px;
+  color: rgb(7, 109, 75);
+  text-shadow: 2px 2px wheat;
+}
+
+#LifeForceGoBackButton {
+  font-size: 32px;
+  height: 130px;
+  width: 210px;
+  background-color: rgb(194, 238, 203);
+  padding: 25px;
+  color: rgb(52, 169, 66);
+  border: 13px rgb(47, 202, 39) double;
+  border-radius: 30px;
+  text-shadow: 3px 3px grey;
+  font-weight: bold;
+  margin-top: 100px;
+}
+
+#LifeForceGoBackButton:hover {
+  font-size: 32px;
+  height: 130px;
+  width: 210px;
+  background-color: rgb(2, 61, 14);
+  padding: 25px;
+  color: rgb(52, 169, 66);
+  border: 13px rgb(47, 202, 39) double;
+  border-radius: 30px;
+  text-shadow: 3px 3px grey;
+  font-weight: bold;
+  margin-top: 100px;
+}
