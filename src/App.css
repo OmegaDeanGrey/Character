@@ -14,8 +14,20 @@
 }
 
 #Homepage {
-  color: red;
+  color: rgb(109, 160, 255);
   font-size: 100px;
+  text-shadow: 3px 4px lightgray;
+}
+
+#homeBG {
+  background-image: url("../public/KingdomHome.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 850px;
+  width: 1800px;
+  overflow: hidden;
+  z-index: -9999;
 }
 
 /* .App-header {
@@ -348,4 +360,37 @@
     opacity: 1;
     transform: scale(1);
   }
+}
+
+#CharacterContainer {
+  height: 88vh;
+  width: 100%;
+  display: grid;
+}
+
+#BgCharacter {
+  background-image: url("../public/monster1.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 90vh;
+}
+
+#CharacterTitle {
+  color: aliceblue;
+  font-size: 115px;
+  text-shadow: 3px 3px grey;
+}
+
+#AttributeListItems {
+  color: rgb(32, 52, 98);
+  font-size: 58px;
+  margin: 15px;
+  font-weight: bolder;
+  text-shadow: 2px 3px white;
+}
+
+#NoCharacter {
+  color: red;
+  font-size: 40px;
 }

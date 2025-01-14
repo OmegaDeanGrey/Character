@@ -55,7 +55,7 @@ const Quiz = () => {
     <div className="quiz-container">
       <div id="BgQuiz">
         {showScore ? (
-          <div id="ScoreContaioer">
+          <div id="ScoreContainer">
             <span>
               <div className="score-section">
                 You scored {score} out of {questions.length}

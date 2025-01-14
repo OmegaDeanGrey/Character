@@ -12,10 +12,6 @@ code {
     monospace;
 }
 
-#homeBG {
-  background-color: rgba(46, 89, 134, 0.8) bisque;
-}
-
 .GameHead {
   font-size: 100px;
   text-shadow: 6px, 6px, 6px, rgb(254, 185, 185);
@@ -29,22 +25,41 @@ code {
 }
 
 #WellButt {
-  font-size: 30px;
-  background-color: rgb(167, 202, 202);
+  font-size: 70px;
+  background-color: rgb(21, 69, 69);
   text-shadow: 3px 3px 3px rgb(112, 110, 110);
   border-radius: 30px;
-  height: 90px;
+  height: 190px;
+  width: 360px;
   padding: 10px;
   margin-left: 450px;
   border: 12px white double;
+  animation: blink 1s infinite;
+  font-weight: bold;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 #WellButt:hover {
-  font-size: 30px;
+  font-size: 85px;
   background-color: rgb(59, 94, 94);
   text-shadow: 3px 2px rgb(112, 110, 110);
   border-radius: 30px;
-  height: 90px;
+  height: 190px;
+  width: 360px;
+  overflow: hidden;
   padding: 10px;
   margin-left: 450px;
   border: 12px white double;

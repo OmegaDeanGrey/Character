@@ -20,13 +20,13 @@ function PowerIndex() {
     <div id="GHome">
       <div>
         <header className="GameHead">
-          <h1 id="Welcome">WELCOME</h1>
+          <h1 id="Welcome"></h1>
         </header>
         <div>
           <button id="WellButt" onClick={handleGameStart}>
             START
           </button>
-          <button onClick={handleQuizStart}>Quiz</button>
+          {/* <button onClick={handleQuizStart}>Quiz</button> */}
         </div>
       </div>
     </div>
