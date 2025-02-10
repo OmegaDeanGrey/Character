@@ -8,9 +8,11 @@ function HBackground() {
         <div className="App">
           <header className="App-header">
             <h1 id="Homepage">
-              Quest for your true power, form teams, and take on the world
+              Quest for your true power,
               <br />
             </h1>
+            <h2 id="Homepage2">Form teams,</h2>
+            <h3 id="Homepage3">and Take on the world.</h3>
           </header>
         </div>
       </div>

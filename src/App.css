@@ -17,6 +17,26 @@
   color: rgb(109, 160, 255);
   font-size: 100px;
   text-shadow: 3px 4px lightgray;
+  display: flex;
+  justify-content: left;
+}
+
+#Homepage2 {
+  color: rgb(51, 100, 191);
+  font-size: 100px;
+  text-shadow: 3px 4px lightgray;
+  display: flex;
+  justify-content: center;
+  margin-left: -200px;
+}
+
+#Homepage3 {
+  color: rgb(5, 47, 125);
+  font-size: 100px;
+  text-shadow: 3px 4px rgb(240, 240, 240);
+  margin-left: 700px;
+  display: flex;
+  justify-content: right;
 }
 
 #homeBG {
@@ -28,6 +48,9 @@
   width: 1800px;
   overflow: hidden;
   z-index: -9999;
+  display: flex;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  padding: 20px;
 }
 
 /* .App-header {

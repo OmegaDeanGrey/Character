@@ -56,6 +56,7 @@ function Fighter() {
 
   const fighter = {
     name: randomName,
+    role: "Fighter",
     strength: Math.abs(Math.floor(Math.random() * 100) + 30),
     intelligence: Math.abs(Math.floor(Math.random() * 100) - 30),
     speed: Math.abs(Math.floor(Math.random() * 100) + 10),

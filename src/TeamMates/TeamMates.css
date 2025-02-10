@@ -68,6 +68,41 @@
   background-size: small;
 }
 
+#FairyButton {
+  background-image: url("../../public/Summoner.png");
+  background-repeat: repeat;
+  background-size: small;
+}
+
+#VampireButton {
+  background-image: url("../../public/Summoner.png");
+  background-repeat: repeat;
+  background-size: small;
+}
+
+#OgreButton {
+  background-image: url("../../public/Summoner.png");
+  background-repeat: repeat;
+  background-size: small;
+}
+
+#GiantButton {
+  background-image: url("../../public/Summoner.png");
+  background-repeat: repeat;
+  background-size: small;
+}
+
+#WerewolfButton {
+  background-image: url("../../public/Summoner.png");
+  background-repeat: repeat;
+  background-size: small;
+}
+
+#AndroidButton {
+  background-image: url("../../public/Summoner.png");
+  background-repeat: repeat;
+  background-size: small;
+}
 .party-container {
   height: 90vh;
   width: 100%;

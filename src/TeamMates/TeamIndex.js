@@ -48,18 +48,44 @@ function TeamIndex() {
         </button>
       </div>
       <div className="ButtonRows">
-        <button className="TMB" onClick={() => navigate("/Mage")}></button>
+        <button className="TMB" onClick={() => navigate("/Mage")}>
+          Fairy
+        </button>
         <button className="TMB" onClick={() => navigate("/Mage")}>
           Vampire
         </button>
         <button className="TMB" onClick={() => navigate("/Mage")}>
-          WereWolf
+          Ogre
+        </button>
+        <button className="TMB" onClick={() => navigate("/Mage")}>
+          Giant
+        </button>
+        <button className="TMB" onClick={() => navigate("/Mage")}>
+          Werewolf
         </button>
         <button className="TMB" onClick={() => navigate("/Mage")}>
           Android
         </button>
-        <button className="TMB" onClick={() => navigate("/Mage")}></button>
-        <button className="TMB" onClick={() => navigate("/Mage")}></button>
+      </div>
+      <div className="ButtonRows">
+        <button className="TMB" onClick={() => navigate("/Mage")}>
+          Valkyrie
+        </button>
+        <button className="TMB" onClick={() => navigate("/Mage")}>
+          BeastMaster
+        </button>
+        <button className="TMB" onClick={() => navigate("/Mage")}>
+          Satyr
+        </button>
+        <button className="TMB" onClick={() => navigate("/Mage")}>
+          Witch
+        </button>
+        <button className="TMB" onClick={() => navigate("/Mage")}>
+          Ranger
+        </button>
+        <button className="TMB" onClick={() => navigate("/Mage")}>
+          Centaur
+        </button>
       </div>
     </div>
   );

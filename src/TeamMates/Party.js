@@ -9,6 +9,7 @@ function Party() {
     <div className="party-container">
       <div id="BgParty">
         <h2 id="PartyTitle">Party Members</h2>
+
         {party.length === 0 ? (
           <p>No members in your party yet!</p>
         ) : (
