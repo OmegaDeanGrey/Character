@@ -3,7 +3,7 @@ import { Link, Route, Routes } from "react-router-dom";
 import "./Nav.css";
 
 import HBackground from "./Home/HBackground.js";
-import PowerIndex from "./Power/PowerIndex.js";
+
 import Start from "./Power/Start.js";
 import Character from "./Character/Character.js";
 import TrialsIndex from "./Trials/Index.js";
@@ -19,18 +19,43 @@ import TrialThree from "./Trials/TrialThree.js";
 import TrialFour from "./Trials/TrialFour.js";
 import TrialFive from "./Trials/TrialFive.js";
 import TrialSix from "./Trials/TrialSix.js";
+import Rogue from "../TeamMates/Rogue.js";
+import Fairy from "../TeamMates/Fairy.js";
+import Vamp from "../TeamMates/Vamp.js";
+import Elemental from "../TeamMates/Elemental.js";
+import Giant from "../TeamMates/Giant.js";
+import Summoner from "../TeamMates/Summoner.js";
+import WereWolf from "../TeamMates/WereWolf.js";
+import Android from "../TeamMates/Android.js";
+import DemiGod from "../TeamMates/DemiGod.js";
+import Valkyrie from "../TeamMates/Valkyrie.js";
+import EE from "./Home/EE.js";
+import EE2 from "./Home/EE2.js";
+import OnlyCharacter from "./Character/OnlyCharacter.js";
+import Shop from "./Character/Shop.js";
+import Bressone from "./Battle/Velonia/Bressone.js";
+import OnlyInventory from "./Character/OnlyInventory.js";
+import BattleHome from "./Battle/BattleHome.js";
+import WesternWood from "./Battle/Velonia/WesternWood.js";
+import Sableheim from "./Battle/Velonia/Sableheim.js";
+import Dvasheld from "./Battle/Velonia/Dvasheld.js";
+import BattleField from "./Battle/Battlefield.js";
+import BressoneBattle from "./Battle/Velonia/BressonBattle.js";
 
 function Navbar() {
   const [showCharacterLink, setShowCharacterLink] = useState(false);
   const [showTrialsLink, setShowTrialsLink] = useState(false);
+  const [showShopLink, setShowShopLink] = useState(false);
   const [updateTrigger, setUpdateTrigger] = useState(0); // Force re-render
 
   useEffect(() => {
     const savedStats = localStorage.getItem("characterStats");
     setShowCharacterLink(!!savedStats);
-
+    setShowShopLink(true);
     const trialsEnabled = localStorage.getItem("trialsEnabled");
     setShowTrialsLink(trialsEnabled === "true");
+    const shopEnabled = localStorage.getItem("shopEnabled");
+    setShowShopLink(shopEnabled === "true");
   }, [updateTrigger]); // Re-run when updateTrigger changes
 
   const triggerUpdate = () => setUpdateTrigger((prev) => prev + 1);
@@ -41,49 +66,47 @@ function Navbar() {
         <Link to="/THC">
           <h1 className="navbar-logo">Erowind</h1>
         </Link>
-        <ul className="navbar-links">
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/PowerIndex">Make Character</Link>
-          </li>
-          {showCharacterLink && (
+        <div id="links">
+          <ul className="navbar-links">
             <li>
-              <Link to="/Character">Character</Link>
+              <Link to="/">Home</Link>
             </li>
-          )}
-          {showTrialsLink && (
+            {showCharacterLink && (
+              <li>
+                <Link to="/OnlyCharacter">Character</Link>
+              </li>
+            )}
+            {showShopLink && (
+              <li>
+                <Link to="/Shop">Shop</Link>
+              </li>
+            )}
+            {showTrialsLink && (
+              <li>
+                <Link to="/Trials">Trials</Link>
+              </li>
+            )}
+          </ul>
+        </div>
+        <div>
+          <ul className="navbar-links">
             <li>
-              <Link to="/Trials">Trials</Link>
+              <Link to="/TeamIndex">Select Team</Link>
             </li>
-          )}
-          <li>
-            <Link to="/Fighter"></Link>
-          </li>
-          <li>
-            <Link to="/Cleric"></Link>
-          </li>
-
-          <li>
-            <Link to="/TrialOne"></Link>
-          </li>
-
-          <li>
-            <Link to="/TeamIndex">Select Team</Link>
-          </li>
-          <li>
-            <Link to="/Party">View Party</Link>
-          </li>
-          <li>
-            <Link to="/Mage"></Link>
-          </li>
-        </ul>
+            <li>
+              <Link to="/Party">View Party</Link>
+            </li>
+            <li>
+              <Link to="/BattleHome">Fight</Link>
+            </li>
+          </ul>
+        </div>
       </nav>
 
       <Routes>
         <Route path="/" element={<HBackground />} />
-        <Route path="/PowerIndex" element={<PowerIndex />} />
+
+        <Route path="/Start/Home" element={<HBackground />} />
         <Route
           path="/Start"
           element={
@@ -99,11 +122,22 @@ function Navbar() {
           }
         />
         <Route path="/Character" element={<Character />} />
+        <Route path="/OnlyCharacter" element={<OnlyCharacter />} />
         <Route path="/Trials" element={<TrialsIndex />} />
         <Route path="/TrialOne" element={<TrialOne />} />
         <Route path="/Fighter" element={<Fighter />} />
         <Route path="/Cleric" element={<Cleric />} />
         <Route path="/Mage" element={<Mage />} />
+        <Route path="/Rogue" element={<Rogue />} />
+        <Route path="/Summoner" element={<Summoner />} />
+        <Route path="/Fairy" element={<Fairy />} />
+        <Route path="/Vamp" element={<Vamp />} />
+        <Route path="/Elemental" element={<Elemental />} />
+        <Route path="/Giant" element={<Giant />} />
+        <Route path="/Android" element={<Android />} />
+        <Route path="/Valkyrie" element={<Valkyrie />} />
+        <Route path="/DemiGod" element={<DemiGod />} />
+        <Route path="/WereWolf" element={<WereWolf />} />
         <Route path="/TeamIndex" element={<TeamIndex />} />
         <Route path="/Party" element={<Party />} />
         <Route path="/TrialTwo" element={<TrialTwo />} />
@@ -112,6 +146,17 @@ function Navbar() {
         <Route path="/TrialFour" element={<TrialFour />} />
         <Route path="/TrialFive" element={<TrialFive />} />
         <Route path="/TrialSix" element={<TrialSix />} />
+        <Route path="/EE" element={<EE />} />
+        <Route path="/EE2" element={<EE2 />} />
+        <Route path="/Shop" element={<Shop />} />
+        <Route path="/Bressone" element={<Bressone />} />
+        <Route path="/OnlyInventory" element={<OnlyInventory />} />
+        <Route path="/BattleHome" element={<BattleHome />} />
+        <Route path="/WesternWood" element={<WesternWood />} />
+        <Route path="/Sableheim" element={<Sableheim />} />
+        <Route path="/Dvasheld" element={<Dvasheld />} />
+        <Route path="/BattleField" element={<BattleField />} />
+        <Route path="/BressoneBattle" element={<BressoneBattle />} />
       </Routes>
     </>
   );

@@ -1,66 +1,70 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParty } from "../Components/Context/PartyContext.js";
+import baseStatsByClass from "../Components/Character/BaseStats";
 
 function Mage() {
-  const [stats, setStats] = useState({});
   const [showOverlay, setShowOverlay] = useState(false);
   const navigate = useNavigate();
   const { party, addToParty } = useParty();
   const isPartyFull = party.length >= 5;
+  const [mage, setMage] = useState(null);
 
-  const names = [
-    "Alice",
-    "Bob",
-    "Charlie",
-    "Diana",
-    "Eve",
-    "Frank",
-    "Mike",
-    "Joe",
-    "Drew",
-    "Kornebari",
-    "Valeria",
-    "Dot",
-    "Vaughn",
-    "Bean",
-    "Jake",
-    "Alicia",
-    "Bobby",
-    "Charles",
-    "Dana",
-    "Evan",
-    "Franklin",
-    "Mika",
-    "Joey",
-    "Dora",
-    "Barni",
-    "Valerie",
-    "Dottie",
-    "Vince",
-    "Ben",
-    "Jack",
-  ];
-  const randomName = names[Math.floor(Math.random() * names.length)];
+  const generateNewMage = () => {
+    const names = [
+      "Alice",
+      "Rage",
+      "Venge",
+      "Deitric",
+      "Aura",
+      "Zephyr",
+      "Raistlin",
+      "Majere",
+      "Fugue",
+      "Merlin",
+      "Dawn",
+      "Wren",
+      "Fredrica",
+      "Kiira",
+    ];
 
-  const mage = {
-    name: randomName,
-    role: "Mage",
-    strength: Math.abs(Math.floor(Math.random() * 100) - 20),
-    intelligence: Math.abs(Math.floor(Math.random() * 100) + 30),
-    speed: Math.abs(Math.floor(Math.random() * 100) - 10),
-    defense: Math.abs(Math.floor(Math.random() * 100) - 10),
-    HP: Math.abs(Math.floor(Math.random() * 100) - 30),
+    const usedNames = new Set(party.map((member) => member.name));
+    const availableNames = names.filter((name) => !usedNames.has(name));
+    const randomName =
+      availableNames.length > 0
+        ? availableNames[Math.floor(Math.random() * availableNames.length)]
+        : `Mage${Math.floor(Math.random() * 1000)}`;
+
+    const mageBase = baseStatsByClass["Mage"];
+    const baseHP = mageBase.HP + Math.floor(Math.random() * 10);
+
+    return {
+      name: randomName,
+      role: "Mage",
+      strength: mageBase.Strength + Math.floor(Math.random() * 10),
+      intelligence: mageBase.Intelligence + Math.floor(Math.random() * 10),
+      speed: mageBase.Speed + Math.floor(Math.random() * 10),
+      defense: mageBase.Defense + Math.floor(Math.random() * 10),
+      maxHP: baseHP,
+      currentHP: baseHP,
+      level: 1,
+    };
   };
 
-  const handleAddToParty = () => {
-    if (isPartyFull) return;
-    if (party.length < 5) addToParty(mage);
+  useEffect(() => {
+    setMage(generateNewMage());
+  }, []);
 
+  const handleAddToParty = () => {
+    if (isPartyFull || !mage) return;
+
+    addToParty(mage);
     setShowOverlay(true);
+
     setTimeout(() => {
-      setShowOverlay(false); // Hide overlay after 1 second
-    }, 1000);
+      setShowOverlay(false);
+      setMage(generateNewMage()); // Generate a new unique fighter
+    }, 2000);
   };
 
   return (
@@ -77,50 +81,61 @@ function Mage() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            zIndex: 1000,
+            zIndex: 9000,
           }}
         >
           <h1
             style={{
-              color: "white",
+              color: "aquamarine",
               fontSize: "8rem",
               textShadow: "0 0 10px #ff0, 0 0 20px #ff0",
-              animation: "fadeIn 1s ease-out",
+              animation: "fadeIn 2s ease-in-out",
             }}
           >
-            Mage - {mage.name} <br />
-            Added to Team!
+            Mage <br />
+            Troll The Respawn, Jeremy.
           </h1>
         </div>
       )}
-      <div className="containerdiv">
-        <video muted autoPlay loop controls id="MageVid">
+      {isPartyFull && (
+        <div>
+          <p id="PF">Party Full</p>
+        </div> // Disable button if the party is full
+      )}
+      <div className="containerdiv" id="mageall">
+        <video muted autoPlay loop id="MageVid">
           <source src="./MageVid.mp4" type="video/mp4" />
         </video>
 
-        <h1>Mage</h1>
-        <h2>Abilty: Spellcast</h2>
-        <br />
-
-        <typed>Uses magic to effect all enemies</typed>
-        <ul>
-          <li>Str: -30</li>
-          <li>Int: +30</li>
-          <li>Speed: -10</li>
-          <li>Defense: -10</li>
-          <li>HP: -30</li>
-        </ul>
+        <h1 id="magetitle">Mage</h1>
+        <h2 id="magedesc">
+          Abilty: Spellcast
+          <p>Uses magic to effect a back row enemy</p>
+        </h2>
+        <div>
+          <ul id="mageadj">
+            <li>Str: 5</li>
+            <li>Int: 70</li>
+            <li>Spd: 20</li>
+            <li>Def: 25</li>
+            <li>HP: 20</li>
+          </ul>
+        </div>
         <button
-          id="atpButton"
+          className="dabuttons"
+          id="magerecruit"
           onClick={handleAddToParty}
-          disabled={isPartyFull} // Disable button if the party is full
-          title={isPartyFull ? "Party is full" : ""} // Tooltip message
-          {...(isPartyFull ? "View Party" : "Party Full")}
+          disabled={isPartyFull}
         >
           Recruit
         </button>
-        <button id="MagebttButton" onClick={() => navigate("/TeamIndex")}>
-          Back to Team Index
+
+        <button
+          className="dabuttons"
+          id="MagebttButton"
+          onClick={() => navigate("/Party")}
+        >
+          View Party
         </button>
       </div>
     </>

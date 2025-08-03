@@ -1,76 +1,69 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParty } from "../Components/Context/PartyContext";
+import baseStatsByClass from "../Components/Character/BaseStats";
+
+import "./TeamMates.css";
+import "../App.css";
 
 function Summoner() {
-  const [stats, setStats] = useState({});
   const [showOverlay, setShowOverlay] = useState(false);
   const navigate = useNavigate();
   const { party, addToParty } = useParty();
   const isPartyFull = party.length >= 5;
+  const [summoner, setSummoner] = useState(null);
 
-  const names = [
-    "Alice",
-    "Bob",
-    "Charlie",
-    "Diana",
-    "Eve",
-    "Frank",
-    "Mike",
-    "Joe",
-    "Drew",
-    "Kornebari",
-    "Valeria",
-    "Dot",
-    "Vaughn",
-    "Bean",
-    "Jake",
-    "Alicia",
-    "Bobby",
-    "Charles",
-    "Dana",
-    "Evan",
-    "Franklin",
-    "Mika",
-    "Joey",
-    "Dora",
-    "Barni",
-    "Valerie",
-    "Dottie",
-    "Vince",
-    "Ben",
-    "Jack",
-  ];
-  const randomName = names[Math.floor(Math.random() * names.length)];
-  const [alert, setAlert] = useState("");
-  // useEffect(() => {
-  //   // Generate stats only once
-  //   setStats({
-  //     strength: Math.floor(Math.random() * 100),
-  //     intelligence: Math.floor(Math.random() * 100),
-  //     speed: Math.floor(Math.random() * 100),
-  //     defense: Math.floor(Math.random() * 100),
-  //     hp: Math.floor(Math.random() * 100),
-  //   });
-  // }, []);
+  const generateNewSummoner = () => {
+    const names = [
+      "Mika",
+      "Rober",
+      "DeMarche",
+      "DeMarco",
+      "Marco",
+      "Endira",
+      "Samantha",
+      "Googel",
+      "French",
+      "Seamus",
+      "Siobhan",
+    ];
+    const usedNames = new Set(party.map((member) => member.name));
+    const availableNames = names.filter((name) => !usedNames.has(name));
+    const randomName =
+      availableNames.length > 0
+        ? availableNames[Math.floor(Math.random() * availableNames.length)]
+        : `Summoner${Math.floor(Math.random() * 1000)}`;
 
-  const summoner = {
-    name: randomName,
-    strength: Math.abs(Math.floor(Math.random() * 100) + 30),
-    intelligence: Math.abs(Math.floor(Math.random() * 100) - 30),
-    speed: Math.abs(Math.floor(Math.random() * 100) + 10),
-    defense: Math.abs(Math.floor(Math.random() * 100) + 10),
-    HP: Math.abs(Math.floor(Math.random() * 100) + 10),
+    const summonerBase = baseStatsByClass["Summoner"];
+    const baseHP = summonerBase.HP + Math.floor(Math.random() * 10);
+
+    return {
+      name: randomName,
+      role: "Summoner",
+      strength: summonerBase.Strength + Math.floor(Math.random() * 10),
+      intelligence: summonerBase.Intelligence + Math.floor(Math.random() * 10),
+      speed: summonerBase.Speed + Math.floor(Math.random() * 10),
+      defense: summonerBase.Defense + Math.floor(Math.random() * 10),
+      maxHP: baseHP,
+      currentHP: baseHP,
+      level: 1,
+    };
   };
 
-  const handleAddToParty = () => {
-    if (isPartyFull) return;
-    if (party.length < 5) addToParty(summoner);
+  useEffect(() => {
+    setSummoner(generateNewSummoner());
+  }, []);
 
+  const handleAddToParty = () => {
+    if (isPartyFull || !summoner) return;
+
+    addToParty(summoner);
     setShowOverlay(true);
+
     setTimeout(() => {
-      setShowOverlay(false); // Hide overlay after 1 second
-    }, 3000);
+      setShowOverlay(false);
+      setSummoner(generateNewSummoner()); // Generate a new unique fighter
+    }, 2000);
   };
 
   return (
@@ -83,54 +76,69 @@ function Summoner() {
             left: 0,
             width: "100vw",
             height: "100vh",
-            backgroundColor: "rgba(239, 221, 221, 0.7)", // Semi-transparent black
+            backgroundColor: "rgba(0, 0, 0, 0.55)", // Semi-transparent black
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            zIndex: 199000,
+            zIndex: 9000,
+            textShadow: "3px 13px 10px black, 0 0 20px grey",
           }}
         >
           <h1
             style={{
-              color: "white",
+              color: "red",
               fontSize: "8rem",
               textShadow: "0 0 10px black, 0 0 20px grey",
               animation: "fadeIn 3s ease-out",
             }}
           >
-            Summoner - {summoner.name} <br />
+            Summoner <br />
             Arise & Destroy
           </h1>
         </div>
       )}
-      <div className="containerdiv4">
-        <img src="./Monster11.png" id="Summoner1" type="video/mp4" />
-        <img src="./Monster2.png" id="Summoner2" type="video/mp4" />
-        <img src="./Monster3.png" id="Summoner3" type="video/mp4" />
 
-        <h1>Summoner</h1>
-        <h2>Abilty: Familiar</h2>
-        <br />
-        <typed>Summon Monster to damage any number of opponents</typed>
-        <ul>
-          <li>Str: -10</li>
-          <li>Int: +10</li>
-          <li>Speed: -10</li>
-          <li>Defense: -10</li>
-          <li>HP: +0</li>
-        </ul>
-        <button
-          id="ClericSelectButton"
-          onClick={handleAddToParty}
-          disabled={isPartyFull} // Disable button if the party is full
-          title={isPartyFull ? "Party is full" : ""} // Tooltip message
-          {...(isPartyFull ? "View Party" : "Party Full")}
-        >
-          Recruit
-        </button>
-        <button id="ClericbttButton" onClick={() => navigate("/TeamIndex")}>
-          Back to Team Index
-        </button>
+      {isPartyFull && (
+        <div>
+          <p id="PFFighter">Party Full</p>
+        </div>
+      )}
+      <div className="containerdiv">
+        <div id="Summonerall">
+          <p id="Summonertitle">Summoner</p>
+          <div id="Summonerdesc">
+            <h2>Abilty: Familiar</h2>
+
+            <p>Summon Monster to damage any number of opponents</p>
+          </div>
+          <div id="Summoneratt">
+            <ul>
+              <li>Str: 20</li>
+              <li>Int: 50</li>
+              <li>Spd: 10</li>
+              <li>Def: 45</li>
+              <li>HP: 40</li>
+            </ul>
+          </div>
+          <div id="buttoncasesum">
+            <button
+              id="SummonerSelectButton"
+              className="Summonerbutt"
+              onClick={handleAddToParty}
+              disabled={isPartyFull} // Disable button if the party is full
+            >
+              Recruit
+            </button>
+
+            <button
+              id="SummonerbttButton"
+              className="Summonerbutt"
+              onClick={() => navigate("/Party")}
+            >
+              View Party
+            </button>
+          </div>
+        </div>
       </div>
     </>
   );

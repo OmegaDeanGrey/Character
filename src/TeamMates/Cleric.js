@@ -1,77 +1,68 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParty } from "../Components/Context/PartyContext";
+import baseStatsByClass from "../Components/Character/BaseStats";
 
 function Cleric() {
-  const [stats, setStats] = useState({});
   const [showOverlay, setShowOverlay] = useState(false);
   const navigate = useNavigate();
   const { party, addToParty } = useParty();
   const isPartyFull = party.length >= 5;
+  const [cleric, setCleric] = useState(null);
 
-  const names = [
-    "Alice",
-    "Bob",
-    "Charlie",
-    "Diana",
-    "Eve",
-    "Frank",
-    "Mike",
-    "Joe",
-    "Drew",
-    "Kornebari",
-    "Valeria",
-    "Dot",
-    "Vaughn",
-    "Bean",
-    "Jake",
-    "Alicia",
-    "Bobby",
-    "Charles",
-    "Dana",
-    "Evan",
-    "Franklin",
-    "Mika",
-    "Joey",
-    "Dora",
-    "Barni",
-    "Valerie",
-    "Dottie",
-    "Vince",
-    "Ben",
-    "Jack",
-  ];
-  const randomName = names[Math.floor(Math.random() * names.length)];
-  const [alert, setAlert] = useState("");
-  // useEffect(() => {
-  //   // Generate stats only once
-  //   setStats({
-  //     strength: Math.floor(Math.random() * 100),
-  //     intelligence: Math.floor(Math.random() * 100),
-  //     speed: Math.floor(Math.random() * 100),
-  //     defense: Math.floor(Math.random() * 100),
-  //     hp: Math.floor(Math.random() * 100),
-  //   });
-  // }, []);
+  const generateNewCleric = () => {
+    const names = [
+      "Eve",
+      "Roe",
+      "Roweena",
+      "Vanessa",
+      "Ulric",
+      "Rian",
+      "Umberto",
+      "Diego",
+      "Christo",
+      "Padre",
+      "Eden",
+      "Rye",
+      "Constantine",
+      "Bo",
+    ];
+    const usedNames = new Set(party.map((member) => member.name));
+    const availableNames = names.filter((name) => !usedNames.has(name));
+    const randomName =
+      availableNames.length > 0
+        ? availableNames[Math.floor(Math.random() * availableNames.length)]
+        : `Cleric${Math.floor(Math.random() * 1000)}`;
 
-  const cleric = {
-    name: randomName,
-    role: "Cleric",
-    strength: Math.abs(Math.floor(Math.random() * 100) + 30),
-    intelligence: Math.abs(Math.floor(Math.random() * 100) - 30),
-    speed: Math.abs(Math.floor(Math.random() * 100) + 10),
-    defense: Math.abs(Math.floor(Math.random() * 100) + 10),
-    HP: Math.abs(Math.floor(Math.random() * 100) + 10),
+    const clericBase = baseStatsByClass["Cleric"];
+    const baseHP = clericBase.HP + Math.floor(Math.random() * 10);
+    return {
+      name: randomName,
+      role: "Cleric",
+      strength: clericBase.Strength + Math.floor(Math.random() * 10),
+      intelligence: clericBase.Intelligence + Math.floor(Math.random() * 10),
+      speed: clericBase.Speed + Math.floor(Math.random() * 10),
+      defense: clericBase.Defense + Math.floor(Math.random() * 10),
+      maxHP: baseHP,
+      currentHP: baseHP,
+      level: 1,
+    };
   };
 
-  const handleAddToParty = () => {
-    if (isPartyFull) return;
-    if (party.length < 5) addToParty(cleric);
+  useEffect(() => {
+    setCleric(generateNewCleric());
+  }, []);
 
+  const handleAddToParty = () => {
+    if (isPartyFull || !cleric) return;
+
+    addToParty(cleric);
     setShowOverlay(true);
+
     setTimeout(() => {
-      setShowOverlay(false); // Hide overlay after 1 second
-    }, 3000);
+      setShowOverlay(false);
+      setCleric(generateNewCleric()); // Generate a new unique fighter
+    }, 2000);
   };
 
   return (
@@ -88,7 +79,8 @@ function Cleric() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            zIndex: 199000,
+            zIndex: 9000,
+            textShadow: "0 0 10px black, 0 0 20px grey",
           }}
         >
           <h1
@@ -96,40 +88,54 @@ function Cleric() {
               color: "white",
               fontSize: "8rem",
               textShadow: "0 0 10px black, 0 0 20px grey",
-              animation: "fadeIn 3s ease-out",
+              animation: "fadeIn 7s ease-out",
             }}
           >
-            Cleric - {cleric.name} <br />
+            Cleric <br />
             Let's Go Fellow!
           </h1>
         </div>
       )}
-      <div className="containerdiv3">
-        <img src="./Cleric.mp4" id="ClericVid" type="video/mp4" />
+      {isPartyFull && (
+        <div>
+          <p id="PFCleric">Party Full</p>
+        </div> // Disable button if the party is full
+      )}
+      <div className="containerdiv">
+        <div id="clericall">
+          <h1 id="clerictitle">Cleric</h1>
+          <div id="Clericdesc">
+            <h2>Abilty: Healing Hands</h2>
 
-        <h1>Cleric</h1>
-        <h2>Abilty: Healing Hands</h2>
-        <br />
-        <typed>Provide Healing to One Ally</typed>
-        <ul>
-          <li>Str: -10</li>
-          <li>Int: +10</li>
-          <li>Speed: +0</li>
-          <li>Defense: +40</li>
-          <li>HP: +40</li>
-        </ul>
-        <button
-          id="ClericSelectButton"
-          onClick={handleAddToParty}
-          disabled={isPartyFull} // Disable button if the party is full
-          title={isPartyFull ? "Party is full" : ""} // Tooltip message
-          {...(isPartyFull ? "View Party" : "Party Full")}
-        >
-          Recruit
-        </button>
-        <button id="ClericbttButton" onClick={() => navigate("/TeamIndex")}>
-          Back to Team Index
-        </button>
+            <p>Strong Healing to the Weakest Ally</p>
+          </div>
+          <div>
+            <ul id="Clericadj">
+              <li>Str: 20</li>
+              <li>Int: 70</li>
+              <li>Spd: 20</li>
+              <li>Def: 35</li>
+              <li>HP: 30</li>
+            </ul>
+          </div>
+
+          <button
+            className="dabuttons"
+            id="ClericSelectButton"
+            onClick={handleAddToParty}
+            disabled={isPartyFull} // Disable button if the party is full
+          >
+            Recruit
+          </button>
+
+          <button
+            className="dabuttons"
+            id="ClericbttButton"
+            onClick={() => navigate("/Party")}
+          >
+            View Team
+          </button>
+        </div>
       </div>
     </>
   );

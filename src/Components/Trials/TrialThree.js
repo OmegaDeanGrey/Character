@@ -1,6 +1,7 @@
 import { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Trials.css";
+import Differences from "./Differences";
 
 function TrialThree() {
   const audioRef = useRef(null);
@@ -29,7 +30,7 @@ function TrialThree() {
           <h3 id="LifeForceText">
             Welcome to the LifeForce Trial;
             <br />
-            TBD
+            <Differences />
           </h3>
         </div>
         <button

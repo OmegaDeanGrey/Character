@@ -1,37 +1,346 @@
 .TMB {
-  font-size: 45px;
-  height: 200px;
-  width: 330px;
-  color: aliceblue;
-  text-shadow: 3px 3px darkgray;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  box-shadow: 12px 13px 73px rgb(55, 55, 56) inset;
-  border: 13px black double;
-  margin-top: 60px;
+  font-size: 67px;
+  height: 250px;
+  width: 380px;
+  color: rgb(186, 196, 206);
+  text-shadow: 3px 3px rgb(7, 6, 6);
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  box-shadow: 12px 14px 70px rgb(114, 114, 111) inset;
+  border: 19px rgb(0, 0, 0) double;
+  margin-top: 10px;
+  margin: 9px;
+  margin-left: -100px;
+  font-weight: bold;
+}
+
+#out {
+  position: relative;
+}
+
+#team-container {
+  display: flex;
+  height: 88vh;
+}
+
+.ClassPanel {
+  flex-grow: 1;
+  padding: 1rem;
+  display: grid;
+  position: absolute;
+  overflow: hidden;
+
+  margin-left: 470px;
+  height: 84vh;
+  width: 1440px;
+}
+
+.panel-content {
+  border: 21px double #2d2c2c;
+  padding: 1rem;
+  height: 84vh;
+  width: 100%;
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
 
 .TMB:hover {
-  font-size: 45px;
-  height: 200px;
-  width: 330px;
-  color: rgba(236, 247, 140, 0.613);
+  font-size: §7px;
+  height: 250px;
+  width: 380px;
+  color: rgba(255, 255, 255, 0.981);
   text-shadow: 3px 3px rgb(14, 14, 14);
-  font-family: Georgia, "Times New Roman", Times, serif;
-
-  border: 13px rgb(239, 215, 215) double;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  box-shadow: none;
+  border: 19px rgb(249, 242, 242) double;
+  margin: 9px;
+  margin-left: -100px;
+  font-weight: bolder;
 }
 
 #ButtonsAll {
   background-image: url("../../public/TeamBg.png");
-  background-repeat: no-repeat;
+  background-repeat: repeat;
+  background-size: contain;
+  height: 90vh;
+  overflow: scroll;
+  position: absolute;
+  width: 100%;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-30%);
+  }
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0.7;
+  }
+  90% {
+    opacity: 0.7;
+  }
+  91% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 0;
+  }
+
+  93% {
+    opacity: 1;
+  }
+  94% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.7;
+  }
+}
+
+.containerdiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 8000;
+  position: absolute;
+  margin: 9px;
+  height: 71vh;
+  width: 1040px;
+  overflow: hidden;
+
+  box-shadow: 5px 15px rgb(55, 54, 54);
+  padding: 23px;
+  margin-left: -20px;
+  margin-right: 12px;
+  font-size: 33px;
+}
+
+.exitbutton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 4px black solid;
+  background-color: rgb(213, 187, 187);
+  font-weight: bold;
+  height: 70px;
+  margin-top: 44px;
+  animation: blink 2s infinite;
+  box-shadow: 5px 15px rgb(55, 54, 54);
+  z-index: 9000;
+  width: 1340px;
+  margin-top: 740px;
+  font-size: 60px;
+  margin-left: 30px;
+}
+
+.exitbutton:hover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 4px black solid;
+  background-color: rgb(248, 189, 189);
+  font-weight: bold;
+  height: 70px;
+  margin-top: 44px;
+  animation: blink 2s infinite;
+  box-shadow: 5px 15px rgb(55, 54, 54);
+  z-index: 9000;
+  width: 1340px;
+  margin-top: 740px;
+  font-size: 60px;
+  margin-left: 30px;
+}
+
+#fighterall {
+  width: 1040px;
+  color: aliceblue;
+  text-shadow: 3px 3px black;
+  padding: 20px;
+  display: grid;
+}
+#fightertitle {
+  font-size: 80px;
+  margin-top: 40px;
+  margin-left: 20px;
+}
+#Fighterdesc {
+  margin-left: 100px;
+  color: rgb(141, 28, 28);
+  font-weight: bold;
+  text-shadow: 2px 2px white;
+}
+
+#fighteradj {
+  margin-left: 40px;
+}
+
+#fighteratt {
+  margin-left: 40px;
+  margin-top: -40px;
+}
+
+#clericall {
+  width: 1340px;
+  height: 60vh;
+  background-image: url("../../public/Hands.png");
+  background-position: center;
   background-size: cover;
-  height: 89vh;
+  background-repeat: no-repeat;
+  text-shadow: 3px 3px rgb(2, 2, 2);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  color: green;
+  opacity: 0.75;
+  border: 30px rgb(163, 236, 185) double;
+  margin-bottom: 170px;
+  margin-top: 100px;
+  margin-left: -20px;
+  animation: holy 35s ease-in-out;
+  animation-fill-mode: forwards;
+  border-radius: 30px;
+  border-top-left-radius: 0%;
+}
+#clerictitle {
+  font-size: 80px;
+  margin-left: 40px;
+  color: rgb(5, 59, 16);
+  text-shadow: 3px 3px rgb(5, 5, 5);
+  animation: holy2 33s ease-out;
+  animation-fill-mode: forwards;
+}
+#Clericdesc {
+  /* margin-left: 350px; */
+  animation: holy2 39s ease-out;
+  animation-fill-mode: forwards;
+  margin-top: 200px;
+  text-shadow: 3px 3px rgb(5, 5, 5);
+}
+
+#Clericadj {
+  width: 150px;
+}
+
+#Archervid {
+  z-index: -9;
+  position: relative;
+  /* position: relative; */
+}
+
+#Archerall {
+  height: 630px;
+  z-index: 9;
+  position: absolute;
+  border: 20px bisque dashed;
+  padding: 19px;
+  text-shadow: 4px 3px black;
+  background-color: rgba(255, 255, 255, 0.338);
+  box-shadow: 6px 7px 10px black;
+}
+
+#Archertitle {
+  color: rgb(247, 247, 157);
+}
+
+#Archerdesc {
+  color: aliceblue;
+}
+
+#Archeradj {
+  color: rgb(241, 241, 103);
+}
+
+.archbutt {
+  font-size: 25px;
+  margin: 39px;
+  margin-top: -70px;
+  border-radius: 25px;
+  padding: 14px;
+  border: 6px rgb(239, 239, 151) dashed;
+  font-weight: bold;
+}
+
+.archbutt:hover {
+  font-size: 25px;
+  margin: 39px;
+  margin-top: -70px;
+  border-radius: 25px;
+  padding: 14px;
+  border: 6px rgb(239, 239, 230) dashed;
+  font-weight: bold;
+  background-color: rgb(240, 192, 104);
+}
+
+@keyframes holy {
+  0% {
+    border-color: rgba(6, 105, 41, 0.931);
+  }
+  20% {
+    border-color: rgba(83, 167, 75, 0.931);
+  }
+
+  60% {
+    border-color: rgba(165, 233, 172, 0.931);
+  }
+  100% {
+    border-color: rgba(245, 247, 245, 0.9);
+  }
+}
+
+@keyframes holy2 {
+  0% {
+    color: rgba(6, 105, 41, 0.931);
+  }
+  20% {
+    color: rgba(83, 167, 75, 0.931);
+  }
+
+  60% {
+    color: 10px rgba(165, 233, 172, 0.931) solid;
+  }
+  100% {
+    color: rgba(245, 247, 245, 0.9);
+  }
+}
+
+#mageall {
+  width: 1300px;
+  margin-left: 40px;
+  text-shadow: 3px 3px rgb(75, 157, 177);
+}
+#magetitle {
+  font-size: 80px;
+  margin-top: -500px;
+}
+#magedesc {
+  margin-top: 0;
+  font-size: 50px;
+  text-shadow: 3px 3px 6px rgb(227, 232, 232);
+}
+
+#mageadj {
+  margin-top: -300px;
+  width: 200px;
 }
 
 .ButtonRows {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  justify-content: center;
   margin-top: 0px;
+  position: relative;
+  overflow: scroll;
+  width: 30%;
+}
+
+.dabuttons {
+  width: 200px;
 }
 
 #partymember {
@@ -68,69 +377,270 @@
   background-size: small;
 }
 
+#RogueButton {
+  background-image: url("../../public/Knave2.png");
+  background-repeat: repeat;
+  background-size: small;
+}
+
 #FairyButton {
-  background-image: url("../../public/Summoner.png");
-  background-repeat: repeat;
-  background-size: small;
+  background-image: url("../../public/Fairy.png");
+  background-repeat: no-repeat;
+  background-position-y: -290px;
+  background-position-x: -590px;
 }
 
-#VampireButton {
-  background-image: url("../../public/Summoner.png");
-  background-repeat: repeat;
-  background-size: small;
+#VampButton {
+  background-image: url("../../public/Vamp.png");
+  background-repeat: no-repeat;
+  border: 20px rgb(21, 21, 21) double;
+  background-size: 700px 500px;
 }
 
-#OgreButton {
-  background-image: url("../../public/Summoner.png");
+#VampButton:hover {
+  background-image: url("../../public/Vamp.png");
   background-repeat: repeat;
   background-size: small;
+  animation: redden 5s infinite;
+  border: 20px white double;
 }
 
+@keyframes redden {
+  0% {
+    border-color: rgba(251, 246, 246, 0.931);
+  }
+  20% {
+    border-color: rgba(143, 95, 95, 0.931);
+  }
+
+  60% {
+    border-color: 10px rgba(168, 38, 38, 0.931) solid;
+  }
+  100% {
+    border-color: rgba(255, 0, 0, 0.9);
+  }
+}
+
+#ElementalButton {
+  background-image: url("../../public/Elemental.png");
+  background-repeat: repeat;
+  background-size: small;
+  animation: twinkle 5s alternate infinite;
+}
+
+#ElementalButton:hover {
+  background-image: url("../../public/Elemental.png");
+  background-repeat: repeat;
+  background-size: small;
+  animation: twinkle 5s alternate infinite;
+  font-weight: bolder;
+  font-size: 28px;
+  border: white 11px double;
+  text-shadow: 2px 2px rgba(196, 196, 183, 0.981);
+}
 #GiantButton {
-  background-image: url("../../public/Summoner.png");
+  background-image: url("../../public/Giant.png");
   background-repeat: repeat;
   background-size: small;
 }
 
-#WerewolfButton {
-  background-image: url("../../public/Summoner.png");
+#GiantButton:hover {
+  background-image: url("../../public/Giant.png");
+  background-repeat: repeat;
+  background-size: cover;
+  font-size: 76px;
+}
+
+#WereWolfButton {
+  background-image: url("../../public/WereWolf.png");
   background-repeat: repeat;
   background-size: small;
 }
 
 #AndroidButton {
-  background-image: url("../../public/Summoner.png");
+  background-image: url("../../public/Android.png");
   background-repeat: repeat;
   background-size: small;
-}
-.party-container {
-  height: 90vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  position: absolute;
+  border-top: 22px lightblue double;
+  box-shadow: 2px grey inset;
+  background-position-y: -50px;
 }
 
-#BgParty {
-  background-image: url("/public/Manns.png");
-  background-repeat: no-repeat;
-  background-position: center;
+#AndroidButton:hover {
+  background-image: url("../../public/Android.png");
+  background-repeat: repeat;
   background-size: cover;
+  background-position: center;
+  border: 23px rgb(117, 169, 215) double;
+  padding-top: -30px;
+  overflow: hidden;
+  background-position-y: -50x;
+}
+
+#ValkyrieButton {
+  background-image: url("../../public/Valkyrie.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-position-y: 5px;
+  overflow: hidden;
+}
+
+#DemiGodButton {
+  background-image: url("../../public/DemiGod.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  animation: holy3 13s alternate infinite;
+  padding-top: -30px;
+  overflow: hidden;
+}
+
+@keyframes holy3 {
+  0% {
+    color: rgba(255, 255, 255, 0.931);
+  }
+  20% {
+    color: rgba(228, 228, 186, 0.931);
+  }
+
+  60% {
+    color: rgba(185, 77, 55, 0.931);
+  }
+  100% {
+    color: rgba(229, 169, 5, 0.9);
+  }
+}
+
+@keyframes holy4 {
+  0% {
+    border-color: rgba(255, 255, 255, 0.931);
+  }
+  20% {
+    border-color: rgba(228, 228, 186, 0.931);
+  }
+
+  60% {
+    border-color: rgba(185, 77, 55, 0.931);
+  }
+  100% {
+    border-color: rgba(229, 169, 5, 0.9);
+  }
+}
+#DemiGodButton:hover {
+  background-image: url("../../public/DemiGod.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  animation: holy4 17s alternate infinite;
+  padding-top: -30px;
+  overflow: hidden;
+}
+
+#SatyrButton {
+  background-image: url("../../public/Satyr.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: rgb(70, 53, 32);
+  padding-top: -30px;
+  overflow: hidden;
+}
+
+#CentaurButton {
+  background-image: url("../../public/Centaur.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  padding-top: -30px;
+  overflow: hidden;
+}
+
+#WitchButton {
+  background-image: url("../../public/Witch.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  padding-top: -30px;
+  overflow: hidden;
+}
+
+#RangerButton {
+  background-image: url("../../public/Ranger.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  /* animation: scroll 62s infinite; */
+  padding-top: -30px;
+  overflow: hidden;
+}
+
+.party-container {
+  height: 88vh;
   width: 100%;
   display: grid;
   justify-content: center;
-  height: 200%;
+  background-color: rgb(80, 56, 33);
+}
+
+#BgParty {
+  background-image: url("/public/Entrance.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 110%;
+  display: flex;
+  justify-content: center;
+  height: 86vh;
+  /* overflow-x: scroll; */
+  /* animation: holy4 15s linear infinite; */
+  border-bottom: 20px white double;
+  overflow: visible;
+  margin-left: -85px;
+  /* margin-right: 750px; */
+}
+
+#nmiypy {
+  width: 10%;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 #PartyTitle {
-  color: black;
-  font-size: 82px;
+  color: rgb(223, 203, 203);
+  font-size: 52px;
   font-weight: bolder;
   font-family: "Times New Roman", Times, serif;
   text-shadow: 3px 3px grey;
+
+  padding-left: 20px;
+}
+#partylisttopper {
+  font-size: 17px;
+  color: white;
+  text-shadow: 3px 3px grey;
+}
+.party-list {
+  display: grid;
+  justify-content: center;
+  overflow: scroll;
 }
 
-.party-list {
+#partylisttitle {
+  color: rgb(176, 161, 178);
+  margin-left: 40px;
+  margin-top: 60px;
+  font-size: 42px;
+  text-shadow: 2px 2px grey;
 }
 
 #partymember {
@@ -167,8 +677,63 @@
   margin-left: 30px;
 }
 
-#ClearPartyButton {
+.remove-button:hover {
   height: 70px;
+  width: 180px;
+  background-color: rgb(72, 67, 60);
+  border: 5px rgb(150, 120, 120) double;
+  border-radius: 30px;
+  font-size: 29px;
+  font-weight: bolder;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-shadow: 2px 3px rgb(122, 113, 113);
+  color: lightgrey;
+  opacity: 0.8;
+  margin-bottom: 40px;
+  margin-left: 30px;
+}
+
+.sortbutton {
+  box-shadow: 4px 5px 11px rgb(222, 168, 102);
+  border-top-left-radius: 0%;
+  text-shadow: 4px 2px white;
+  /* margin-right: -600px; */
+}
+
+#ClearPartyButton {
+  height: 90px;
+  width: 180px;
+  background-color: rgb(23, 19, 14);
+  border: 5px rgb(239, 149, 149) double;
+  border-radius: 30px;
+  font-size: 29px;
+  font-weight: bolder;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-shadow: 2px 3px rgb(122, 113, 113);
+  color: lightgrey;
+  opacity: 0.8;
+  margin-bottom: 40px;
+  margin-top: 40px;
+}
+
+#ClearPartyButton:hover {
+  height: 90px;
+  width: 180px;
+  background-color: rgb(58, 56, 55);
+  border: 5px rgb(150, 120, 120) double;
+  border-radius: 30px;
+  font-size: 29px;
+  font-weight: bolder;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-shadow: 2px 3px rgb(122, 113, 113);
+  color: lightgrey;
+  opacity: 0.8;
+  margin-bottom: 40px;
+  margin-top: 40px;
+}
+
+#SortByStrengthButton {
+  height: 90px;
   width: 180px;
   background-color: rgb(23, 19, 14);
   border: 5px rgb(150, 120, 120) double;
@@ -180,8 +745,676 @@
   color: lightgrey;
   opacity: 0.8;
   margin-bottom: 40px;
+  margin-top: 30px;
 }
 
+#SortByStrengthButton:hover {
+  height: 90px;
+  width: 180px;
+  background-color: rgb(74, 70, 65);
+  border: 5px rgb(150, 120, 120) double;
+  border-radius: 30px;
+  font-size: 29px;
+  font-weight: bolder;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-shadow: 2px 3px rgb(122, 113, 113);
+  color: lightgrey;
+  opacity: 0.8;
+  margin-bottom: 40px;
+  margin-top: 30px;
+}
+
+#SortByIntButton {
+  height: 90px;
+  width: 180px;
+  background-color: rgb(23, 19, 14);
+  border: 5px rgb(150, 120, 120) double;
+  border-radius: 30px;
+  font-size: 29px;
+  font-weight: bolder;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-shadow: 2px 3px rgb(122, 113, 113);
+  color: lightgrey;
+  opacity: 0.8;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+#SortByIntButton:hover {
+  height: 90px;
+  width: 180px;
+  background-color: rgb(74, 70, 65);
+  border: 5px rgb(150, 120, 120) double;
+  border-radius: 30px;
+  font-size: 29px;
+  font-weight: bolder;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-shadow: 2px 3px rgb(122, 113, 113);
+  color: lightgrey;
+  opacity: 0.8;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+#SortByDefButton {
+  height: 90px;
+  width: 180px;
+  background-color: rgb(23, 19, 14);
+  border: 5px rgb(150, 120, 120) double;
+  border-radius: 30px;
+  font-size: 29px;
+  font-weight: bolder;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-shadow: 2px 3px rgb(122, 113, 113);
+  color: lightgrey;
+  opacity: 0.8;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+#SortByDefButton:hover {
+  height: 90px;
+  width: 180px;
+  background-color: rgb(74, 70, 65);
+  border: 5px rgb(150, 120, 120) double;
+  border-radius: 30px;
+  font-size: 29px;
+  font-weight: bolder;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-shadow: 2px 3px rgb(122, 113, 113);
+  color: lightgrey;
+  opacity: 0.8;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+#SortBySpeedButton {
+  height: 90px;
+  width: 180px;
+  background-color: rgb(23, 19, 14);
+  border: 5px rgb(150, 120, 120) double;
+  border-radius: 30px;
+  font-size: 29px;
+  font-weight: bolder;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-shadow: 2px 3px rgb(122, 113, 113);
+  color: lightgrey;
+  opacity: 0.8;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+#SortBySpeedButton:hover {
+  height: 90px;
+  width: 180px;
+  background-color: rgb(74, 70, 65);
+  border: 5px rgb(150, 120, 120) double;
+  border-radius: 30px;
+  font-size: 29px;
+  font-weight: bolder;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-shadow: 2px 3px rgb(122, 113, 113);
+  color: lightgrey;
+  opacity: 0.8;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+#SortByHPButton {
+  height: 90px;
+  width: 180px;
+  background-color: rgb(23, 19, 14);
+  border: 5px rgb(150, 120, 120) double;
+  border-radius: 30px;
+  font-size: 29px;
+  font-weight: bolder;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-shadow: 2px 3px rgb(122, 113, 113);
+  color: lightgrey;
+  opacity: 0.8;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+#SortByHPButton:hover {
+  height: 90px;
+  width: 180px;
+  background-color: rgb(74, 70, 65);
+  border: 5px rgb(150, 120, 120) double;
+  border-radius: 30px;
+  font-size: 29px;
+  font-weight: bolder;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-shadow: 2px 3px rgb(122, 113, 113);
+  color: lightgrey;
+  opacity: 0.8;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+#partybuttons {
+  display: grid;
+  margin-left: 20px;
+  margin-right: 30px;
+}
 #strongid {
   color: blueviolet;
+}
+
+.party-member-card {
+  margin: 30px;
+  height: 1000px;
+  width: 450px;
+  border-radius: 35px;
+  border: 9px solid rgb(47, 47, 47);
+  background-image: url("../../public/halo.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  overflow: scroll;
+  opacity: 0.7;
+  box-shadow: 6px 13px 13px rgb(235, 232, 232),
+    9px 11px 14px rgb(131, 128, 128) inset;
+}
+.card-header {
+  font-size: 60px;
+  padding: 40px;
+  color: aliceblue;
+  text-shadow: 3px 3px black;
+}
+
+.card-body {
+  font-size: 32px;
+  font-weight: bolder;
+  color: rgb(17, 19, 19);
+  text-shadow: 2px 3px rgb(250, 243, 243);
+  margin: 23px;
+  width: 400px;
+  height: 40vh;
+}
+#CharacterContainer {
+  height: 61vh;
+  width: 1540;
+  display: flex;
+  /* background-image: url("../public/BW.png"); */
+  position: absolute;
+  text-shadow: 1px 2px rgb(255, 255, 255);
+  justify-content: center;
+  border: 13px rgb(244, 227, 244) double;
+  /* margin-left: -1300px; */
+  margin-top: 100px;
+  box-shadow: 12px 12px 13px black, 33px 15px 21px rgb(243, 242, 246) inset;
+}
+
+#OnlyOut {
+  background-image: url("../../public/charhome5.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 84vh;
+  padding: 40px;
+  display: flex;
+}
+
+#herodiv {
+  position: absolute;
+  width: 50%;
+}
+
+#heroitemsdiv {
+  width: 40%;
+  margin-left: 10%;
+  height: 300px;
+}
+
+#BWE {
+  position: relative;
+}
+
+#BgCharacter {
+  position: relative;
+  height: 60vh;
+  background-image: url("../../public/BRight.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin-bottom: 80px;
+  /* margin-top: 100px; */
+  align-items: center;
+  border: 7px aliceblue solid;
+  overflow: hidden;
+  animation: blinker 60s infinite;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+@keyframes blinker {
+  0% {
+    color: white;
+  }
+
+  50% {
+    color: black;
+  }
+
+  100% {
+    color: white;
+  }
+}
+
+#BgCharacter::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 60vh;
+  width: 100%;
+  background-image: url("../../public/BW.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  animation: fadeImage 60s infinite ease-in-out;
+  z-index: 0;
+  opacity: 1;
+  display: flex;
+  /* margin-top: 100px; */
+  margin-bottom: 80px;
+}
+
+@keyframes fadeImage {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#CharacterContainer,
+#BgCharacter > * {
+  position: relative;
+  z-index: 1;
+  width: 700px;
+  margin-left: 100px;
+}
+
+@keyframes blink {
+  0% {
+    color: white;
+  }
+
+  50% {
+    color: black;
+  }
+
+  100% {
+    color: white;
+  }
+}
+
+#CharacterTitle {
+  color: rgb(10, 56, 99);
+  font-size: 45px;
+  text-shadow: 2px 2px rgb(249, 245, 245), 4px 7px 8px rgb(5, 5, 5);
+  margin: 20px;
+  margin-top: -340px;
+  margin-bottom: 100px;
+}
+
+#AttributeListItems {
+  /* color: rgb(210, 220, 245); */
+  font-size: 32px;
+  margin: 5px;
+  margin-left: -60px;
+  font-weight: bolder;
+  font-family: "Times New Roman", Times, serif;
+  /* text-shadow: 3px 3px rgb(138, 138, 138); */
+}
+
+.statslabel {
+  font-size: 23px;
+  color: rgb(205, 210, 244);
+  text-shadow: 3px 3px 5px black;
+}
+
+#NoCharacter {
+  color: red;
+  font-size: 40px;
+}
+#CYT {
+  margin-top: -240px;
+  margin-right: -290px;
+  text-shadow: 2px 2px rgb(214, 208, 208);
+}
+
+#characterinsides {
+  padding: 25px;
+  margin-left: -40px;
+  margin-top: 90px;
+  width: 550px;
+  position: absolute;
+}
+.AttLists {
+  font-size: 24px;
+  /* margin-bottom: -100px;
+  padding-right: 60px; */
+  width: 200px;
+}
+
+.AttributeItems {
+  margin-right: 40px;
+  width: 900px;
+}
+
+.defaultlist {
+  font-size: 20px;
+  background-color: rgb(7, 6, 7);
+  height: 109px;
+  width: 109px;
+  margin: 15px;
+
+  padding: 27px;
+  padding-bottom: 30px;
+  border-radius: 50%;
+  color: rgba(233, 237, 240, 0.756);
+  text-shadow: 12px 12px 12px rgb(8, 8, 8);
+  border: 3px rgb(73, 71, 71) solid;
+  box-shadow: 14px 5px 42px rgb(162, 159, 159) inset, 14px 5px 42px rgb(4, 4, 4);
+  font-weight: bolder;
+}
+
+#PF {
+  font-size: 21px;
+  font-weight: bold;
+  margin-top: -150px;
+  background-color: rgba(87, 87, 203, 0.657);
+  height: 57px;
+  width: 57px;
+  padding: 15px;
+  border-radius: 50%;
+  border: 3px aliceblue solid;
+  color: aliceblue;
+  box-shadow: 5px 5px 15px rgb(133, 133, 133), 5px 5px 10px aliceblue inset;
+  animation: blink 3s infinite ease-in-out;
+}
+
+#PFCleric {
+  font-size: 21px;
+  font-weight: bold;
+
+  background-color: rgba(87, 87, 203, 0.657);
+  height: 57px;
+  width: 57px;
+  padding: 15px;
+  border-radius: 50%;
+  border: 3px aliceblue solid;
+  color: aliceblue;
+  box-shadow: 5px 5px 15px rgb(133, 133, 133), 5px 5px 10px aliceblue inset;
+  animation: blink 3s infinite ease-in-out;
+}
+
+#PFFighter {
+  font-size: 21px;
+  font-weight: bold;
+
+  background-color: rgba(87, 87, 203, 0.657);
+  height: 57px;
+  width: 57px;
+  padding: 15px;
+  border-radius: 50%;
+  border: 3px aliceblue solid;
+  color: aliceblue;
+  box-shadow: 5px 5px 15px rgb(133, 133, 133), 5px 5px 10px aliceblue inset;
+  animation: blink 3s infinite ease-in-out;
+}
+
+#PFArcher {
+  font-size: 21px;
+  font-weight: bold;
+
+  background-color: rgba(87, 87, 203, 0.657);
+  height: 57px;
+  width: 57px;
+  padding: 15px;
+  border-radius: 50%;
+  border: 3px aliceblue solid;
+  color: aliceblue;
+  box-shadow: 5px 5px 15px rgb(133, 133, 133), 5px 5px 10px aliceblue inset;
+  animation: blink 3s infinite ease-in-out;
+}
+#PFRogue {
+  font-size: 21px;
+  font-weight: bold;
+  position: absolute;
+  background-color: rgba(87, 87, 203, 0.657);
+  height: 57px;
+  width: 57px;
+  padding: 15px;
+  border-radius: 50%;
+  border: 3px aliceblue solid;
+  color: aliceblue;
+  box-shadow: 5px 5px 15px rgb(133, 133, 133), 5px 5px 10px aliceblue inset;
+  animation: blink 3s infinite ease-in-out;
+}
+#PFSummoner {
+  font-size: 21px;
+  font-weight: bold;
+  position: absolute;
+  background-color: rgba(87, 87, 203, 0.657);
+  height: 57px;
+  width: 57px;
+  padding: 15px;
+  border-radius: 50%;
+  border: 3px aliceblue solid;
+  color: aliceblue;
+  box-shadow: 5px 5px 15px rgb(133, 133, 133), 5px 5px 10px aliceblue inset;
+  animation: blink 3s infinite ease-in-out;
+}
+#PFElemental {
+  font-size: 21px;
+  font-weight: bold;
+
+  background-color: rgba(87, 87, 203, 0.657);
+  height: 57px;
+  width: 57px;
+  padding: 15px;
+  border-radius: 50%;
+  border: 3px aliceblue solid;
+  color: aliceblue;
+  box-shadow: 5px 5px 15px rgb(133, 133, 133), 5px 5px 10px aliceblue inset;
+  animation: blink 3s infinite ease-in-out;
+}
+
+#PFVamp {
+  font-size: 21px;
+  font-weight: bold;
+
+  background-color: rgba(87, 87, 203, 0.657);
+  height: 57px;
+  width: 57px;
+  padding: 15px;
+  border-radius: 50%;
+  border: 3px aliceblue solid;
+  color: aliceblue;
+  box-shadow: 5px 5px 15px rgb(133, 133, 133), 5px 5px 10px aliceblue inset;
+  animation: blink 3s infinite ease-in-out;
+}
+#PFFairy {
+  font-size: 21px;
+  font-weight: bold;
+
+  background-color: rgba(87, 87, 203, 0.657);
+  height: 57px;
+  width: 57px;
+  padding: 15px;
+  border-radius: 50%;
+  border: 3px aliceblue solid;
+  color: aliceblue;
+  box-shadow: 5px 5px 15px rgb(133, 133, 133), 5px 5px 10px aliceblue inset;
+  animation: blink 3s infinite ease-in-out;
+}
+#PFGiant {
+  font-size: 21px;
+  font-weight: bold;
+
+  background-color: rgba(87, 87, 203, 0.657);
+  height: 57px;
+  width: 57px;
+  padding: 15px;
+  border-radius: 50%;
+  border: 3px aliceblue solid;
+  color: aliceblue;
+  box-shadow: 5px 5px 15px rgb(133, 133, 133), 5px 5px 10px aliceblue inset;
+  animation: blink 3s infinite ease-in-out;
+}
+#PFWerewolf {
+  font-size: 21px;
+  font-weight: bold;
+
+  background-color: rgba(87, 87, 203, 0.657);
+  height: 57px;
+  width: 57px;
+  padding: 15px;
+  border-radius: 50%;
+  border: 3px aliceblue solid;
+  color: aliceblue;
+  box-shadow: 5px 5px 15px rgb(133, 133, 133), 5px 5px 10px aliceblue inset;
+  animation: blink 3s infinite ease-in-out;
+}
+
+#PFAndroid {
+  font-size: 21px;
+  font-weight: bold;
+
+  background-color: rgba(87, 87, 203, 0.657);
+  height: 57px;
+  width: 57px;
+  padding: 15px;
+  border-radius: 50%;
+  border: 3px aliceblue solid;
+  color: aliceblue;
+  box-shadow: 5px 5px 15px rgb(133, 133, 133), 5px 5px 10px aliceblue inset;
+  animation: blink 3s infinite ease-in-out;
+}
+
+#PFValkyrie {
+  font-size: 21px;
+  font-weight: bold;
+
+  background-color: rgba(87, 87, 203, 0.657);
+  height: 57px;
+  width: 57px;
+  padding: 15px;
+  border-radius: 50%;
+  border: 3px aliceblue solid;
+  color: aliceblue;
+  box-shadow: 5px 5px 15px rgb(133, 133, 133), 5px 5px 10px aliceblue inset;
+  animation: blink 3s infinite ease-in-out;
+}
+
+#PFDemigod {
+  font-size: 21px;
+  font-weight: bold;
+
+  background-color: rgba(87, 87, 203, 0.657);
+  height: 57px;
+  width: 57px;
+  padding: 15px;
+  border-radius: 50%;
+  border: 3px aliceblue solid;
+  color: aliceblue;
+  box-shadow: 5px 5px 15px rgb(133, 133, 133), 5px 5px 10px aliceblue inset;
+  animation: blink 3s infinite ease-in-out;
+}
+
+#PFSatyr {
+  font-size: 21px;
+  font-weight: bold;
+
+  background-color: rgba(87, 87, 203, 0.657);
+  height: 57px;
+  width: 57px;
+  padding: 15px;
+  border-radius: 50%;
+  border: 3px aliceblue solid;
+  color: aliceblue;
+  box-shadow: 5px 5px 15px rgb(133, 133, 133), 5px 5px 10px aliceblue inset;
+  animation: blink 3s infinite ease-in-out;
+}
+
+#PFWitch {
+  font-size: 21px;
+  font-weight: bold;
+
+  background-color: rgba(87, 87, 203, 0.657);
+  height: 57px;
+  width: 57px;
+  padding: 15px;
+  border-radius: 50%;
+  border: 3px aliceblue solid;
+  color: aliceblue;
+  box-shadow: 5px 5px 15px rgb(133, 133, 133), 5px 5px 10px aliceblue inset;
+  animation: blink 3s infinite ease-in-out;
+}
+
+#PFRanger {
+  font-size: 21px;
+  font-weight: bold;
+
+  background-color: rgba(87, 87, 203, 0.657);
+  height: 57px;
+  width: 57px;
+  padding: 15px;
+  border-radius: 50%;
+  border: 3px aliceblue solid;
+  color: aliceblue;
+  box-shadow: 5px 5px 15px rgb(133, 133, 133), 5px 5px 10px aliceblue inset;
+  animation: blink 3s infinite ease-in-out;
+}
+
+#PFCentaur {
+  font-size: 21px;
+  font-weight: bold;
+
+  background-color: rgba(87, 87, 203, 0.657);
+  height: 57px;
+  width: 57px;
+  padding: 15px;
+  border-radius: 50%;
+  border: 3px aliceblue solid;
+  color: aliceblue;
+  box-shadow: 5px 5px 15px rgb(133, 133, 133), 5px 5px 10px aliceblue inset;
+  animation: blink 3s infinite ease-in-out;
+}
+
+.rb {
+  font-size: 13px;
+  font-weight: lighter;
+  height: 29px;
+  width: 29px;
+
+  border-radius: 50%;
+  background-color: rgba(58, 8, 8, 0.884);
+  color: rgb(210, 212, 213);
+  padding: 5px;
+  margin: 52px;
+  border: 2px rgba(240, 248, 255, 0.555) solid;
+  transition: all 0.5s ease; /* or whatever duration and easing you want */
+}
+
+.rb:hover {
+  font-size: 19px;
+  font-weight: bold;
+
+  height: 29px;
+  width: 29px;
+  border-radius: 50%;
+  background-color: rgba(114, 9, 9, 0.884);
+  color: rgb(223, 135, 151);
+  padding: 5px;
+  margin: 52px;
+  border: 3px rgba(228, 94, 144, 0.555) solid;
 }

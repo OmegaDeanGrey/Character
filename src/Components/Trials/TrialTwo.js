@@ -1,9 +1,12 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Trials.css";
+import EE2 from "../Home/EE2";
 
 function TrialTwo() {
+  const [power, setPower] = useState(0);
   const audioRef = useRef(null);
+  const [trialTwoCompleted, setTrialTwoCompleted] = useState(false);
 
   useEffect(() => {
     if (audioRef.current) {
@@ -15,23 +18,48 @@ function TrialTwo() {
 
   const navigate = useNavigate();
 
+  const handleTrialCompletion = () => {
+    // const strength = 70;
+    // localStorage.setItem(
+    //   "strengthResult",
+    //   JSON.stringify({ Strength: strength })
+    // );
+    localStorage.setItem("TrialTwoCompleted", "true");
+    setTrialTwoCompleted(true);
+    navigate("/Trials");
+  };
+
   return (
     <div id="TwoBodyDiv">
       <div id="bgTwo">
+        <div id="Bannerbg2"></div>
         <audio id="T2" autoPlay loop controls>
           <source src="../Alignment.mp3" type="audio/mpeg" />
         </audio>
+        <div>
+          <button
+            id="EE2"
+            onClick={() => {
+              navigate("/EE2");
+            }}
+          >
+            Tas
+          </button>
+        </div>
+        <div>
+          <button
+            id="CompleteTrialTwoButton"
+            onClick={handleTrialCompletion}
+            disabled={trialTwoCompleted}
+          >
+            Complete Trial
+          </button>
+          <p id="AlignmentTitle">Welcome to the Eagle's Nest</p>
+        </div>
+        <div>
+          <h3 id="AlignmentText">Here your test is Simple</h3>
+        </div>
 
-        <div>
-          <p id="AlignmentTitle">Alignment Trial</p>
-        </div>
-        <div>
-          <h3 id="AlignmentText">
-            Welcome to the Alignment Trial;
-            <br />
-            What's in your heart?
-          </h3>
-        </div>
         <button
           id="AlignmentGoBackButton"
           onClick={() => {

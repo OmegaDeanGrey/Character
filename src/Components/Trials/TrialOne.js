@@ -1,12 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Trials.css";
-import Quiz from "./Quiz";
 
 function TrialOne() {
   const navigate = useNavigate();
-
   const audioRef = useRef(null);
+  const [quizCompleted, setQuizCompleted] = useState(false);
 
   useEffect(() => {
     if (audioRef.current) {
@@ -14,44 +13,53 @@ function TrialOne() {
         console.error("Error attempting to play", error);
       });
     }
+
+    // Check localStorage for quiz completion flag
+    const completed = localStorage.getItem("quizCompleted");
+    if (completed) {
+      setQuizCompleted(true);
+    }
   }, []);
 
   return (
     <div id="OneBodyDiv">
       <div id="bgOne">
-        <audio id="T1" autoPlay loop controls>
+        <audio id="T1" autoPlay loop controls ref={audioRef}>
           <source src="../Wisdom.mp3" type="audio/mpeg" />
         </audio>
 
-        <div>
-          <h2 id="WisdomTitle">Welcome to the Wisdom Trial; </h2>
-        </div>
-        <div>
-          <br />
-          <h4 id="WisdomText">
-            This test is more about using what you know about yourself
-            <br /> more than just what you know
-          </h4>
-        </div>
+        <h2 id="ShallowsTitle">Welcome to the Shallows</h2>
+        <br />
+        <h4 id="ShallowsText">
+          This Trial is more about using what you <br />
+          know about yourself <br />
+          than just what you know
+        </h4>
+
         <div>
           <button
             id="QuizButton"
-            onClick={() => {
-              navigate("/Quiz");
-            }}
+            onClick={() => navigate("/Quiz")}
+            disabled={quizCompleted}
           >
-            Begin Test
+            {quizCompleted ? "Test Complete" : "Begin Test"}
           </button>
         </div>
-        <button
-          id="WisdomGoBackButton"
-          onClick={() => {
-            navigate("/Trials");
-          }}
-        >
+
+        <button id="ShallowsGoBackButton" onClick={() => navigate("/Trials")}>
           Go Back
         </button>
         <br />
+        <button
+          id="ResetQuizButton"
+          onClick={() => {
+            localStorage.removeItem("wisdom");
+
+            setQuizCompleted(false);
+          }}
+        >
+          Reset Quiz
+        </button>
       </div>
     </div>
   );

@@ -29,7 +29,7 @@
 }
 
 #TrialButtonOne {
-  background-image: url("../../../public/Fire.png");
+  background-image: url("../../../public/Water.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -43,7 +43,7 @@
 }
 
 #TrialButtonOne:hover {
-  background-image: url("../../../public/Fire.png");
+  background-image: url("../../../public/Water.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -57,7 +57,7 @@
 }
 
 #TrialButtonTwo {
-  background-image: url("../../../public/Water.png");
+  background-image: url("../../../public/Fire.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -71,7 +71,7 @@
 }
 
 #TrialButtonTwo:hover {
-  background-image: url("../../../public/Water.png");
+  background-image: url("../../../public/Fire.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -207,96 +207,214 @@
 }
 
 #bgOne {
-  background-image: url("../../../public/FireStage.png");
+  background-image: url("../../../public/Shallows.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  height: 800px;
-  width: 1800px;
+  height: 88vh;
+  width: 100%;
   overflow: hidden;
   z-index: -9999;
   display: grid;
   justify-content: center;
+  animation: bazoo 4s ease-in-out infinite;
 }
-
+@keyframes bazoo {
+  0% {
+    background-size: 120%;
+  }
+  50% {
+    background-size: 100%;
+  }
+  100% {
+    background-size: 120%;
+  }
+}
 #bgTwo {
-  background-image: url("../../../public/Rock.png");
+  background-image: url("../../../public/Peaks.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  height: 800px;
-  width: 1800px;
+  height: 88vh;
+  width: 100%;
   overflow: hidden;
-  z-index: -9999;
+
   display: grid;
   justify-content: center;
-
+  position: relative;
   padding-top: 50px;
 }
 
+#Bannerbg2 {
+  position: absolute;
+  height: 88vh;
+  width: 200%;
+  background-image: url("../../../public/Storm.png");
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+  animation: scroll 78s alternate-reverse infinite;
+  animation-name: scroll;
+  animation-duration: 78s;
+  animation-delay: 2s;
+  animation-timing-function: ease-in-out;
+  overflow: hidden;
+  opacity: 0.3;
+  margin-top: -19px;
+}
+
+@keyframes slide {
+  0% {
+    background-position-x: 300;
+  }
+  100% {
+    background-position-x: 0;
+  }
+}
+
+#CompleteTrialTwoButton {
+  height: 100px;
+  width: 120px;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px rgba(51, 50, 50, 0.1) dashed;
+  color: rgba(51, 50, 50, 0.1);
+  font-size: 20px;
+  border-radius: 50px;
+  position: relative;
+  transition: border 5s ease-in;
+}
+
+#CompleteTrialTwoButton:hover {
+  height: 100px;
+  width: 120px;
+  background-color: rgba(0, 0, 0, 0);
+  border: 11px rgb(245, 243, 243) solid;
+  color: rgba(0, 0, 0, 0.2);
+
+  border-radius: 50px;
+}
+
+#EE2 {
+  height: 100px;
+  width: 120px;
+  font-size: 15px;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px rgba(0, 0, 0, 0) dotted;
+  color: rgba(255, 255, 255, 0);
+  margin-left: 1300px;
+  border-radius: 50px;
+  position: relative;
+  transition: border 2s ease-in;
+}
+
+#EE2:hover {
+  height: 100px;
+  width: 120px;
+  background-color: rgba(0, 0, 0, 0);
+  border: 11px rgb(245, 243, 243) solid;
+  color: rgba(0, 0, 0, 0.1);
+
+  border-radius: 50px;
+}
+
 #T1 {
-  height: 10px;
+  height: 60px;
+  margin-left: 600px;
+  animation: bazoo4 4s infinite;
 }
 
 #WisdomQuiz {
   height: 200px;
 }
 
-#WisdomText {
-  color: antiquewhite;
-  font-size: 21px;
+#ShallowsText {
+  color: rgb(220, 238, 239);
+  font-size: 37px;
   font-weight: bold;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  text-shadow: 3px 2px rgb(10, 4, 5);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  text-shadow: 3px 2px rgb(31, 45, 37);
+  animation: bazoo3 4s ease-in-out infinite;
+  opacity: 0.7;
+}
+
+@keyframes bazoo3 {
+  0% {
+    color: rgb(161, 161, 206);
+  }
+  50% {
+    color: aliceblue;
+  }
+  100% {
+    color: rgb(161, 161, 206);
+  }
 }
 
 #AlignmentText {
   color: antiquewhite;
-  font-size: 21px;
+  font-size: 31px;
   font-weight: bold;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   text-shadow: 3px 2px rgb(10, 4, 5);
 }
 
-#WisdomTitle {
+#ShallowsTitle {
   color: rgb(227, 194, 150);
-  font-size: 31px;
+  font-size: 51px;
   font-weight: bolder;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  text-shadow: 3px 2px rgb(10, 4, 5);
+  text-shadow: 3px 3px rgb(10, 4, 5);
+  animation: bazoo4 4s ease-in-out infinite;
+}
+
+@keyframes bazoo4 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 #AlignmentTitle {
   color: white;
   text-shadow: 3px 3px grey;
-  font-size: 34px;
-  font-weight: bold;
+  font-size: 44px;
+  font-weight: bolder;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 #QuizButton {
-  height: 200px;
-  width: 300px;
-  background-color: antiquewhite;
-  border: 15px black double;
-  border-radius: 30px;
-  font-size: 29px;
-  font-weight: bolder;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  text-shadow: 2px 3px rgb(122, 113, 113);
-}
-
-#QuizButton:hover {
-  height: 200px;
-  width: 300px;
-  background-color: rgb(242, 196, 155);
-  border: 15px black double;
-  border-radius: 30px;
+  height: 130px;
+  width: 270px;
+  background-color: rgb(75, 99, 131);
+  border: 15px rgb(191, 210, 234) double;
+  border-radius: 40px;
   font-size: 39px;
   font-weight: bolder;
   font-family: Georgia, "Times New Roman", Times, serif;
-  overflow: hidden;
-  text-shadow: 2px 3px rgb(197, 192, 192);
+  text-shadow: 3px 3px rgb(17, 17, 17);
+  color: rgb(238, 247, 255);
+  opacity: 0.7;
+  margin-left: -500px;
+}
+
+#QuizButton:hover {
+  height: 130px;
+  width: 270px;
+  background-color: rgb(25, 35, 48);
+  border: 15px rgb(191, 210, 234) double;
+  border-radius: 40px;
+  font-size: 39px;
+  font-weight: bolder;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-shadow: 3px 3px rgb(17, 17, 17);
+  color: rgb(238, 247, 255);
+  opacity: 0.7;
+  margin-left: -500px;
 }
 
 #AlignmentGoBackButton {
@@ -310,6 +428,7 @@
   font-family: Georgia, "Times New Roman", Times, serif;
   text-shadow: 2px 3px rgb(122, 113, 113);
   color: lightgrey;
+  position: relative;
 }
 
 #AlignmentGoBackButton:hover {
@@ -326,31 +445,76 @@
   font-size: 34px;
 }
 
-#WisdomGoBackButton {
-  height: 130px;
+#ShallowsGoBackButton {
+  height: 80px;
   width: 230px;
-  background-color: rgb(216, 207, 197);
-  border: 15px rgb(212, 144, 144) double;
-  border-radius: 30px;
+  background-color: rgb(110, 148, 198);
+  border: 5px rgb(191, 210, 234) double;
+  border-radius: 40px;
   font-size: 29px;
   font-weight: bolder;
   font-family: Georgia, "Times New Roman", Times, serif;
-  text-shadow: 3px 3px rgb(239, 223, 223);
-  color: black;
+  text-shadow: 3px 3px rgb(17, 17, 17);
+  color: rgb(238, 247, 255);
+  opacity: 0.6;
+  animation: bazoo2 4s ease-in-out infinite;
+  margin-left: -300px;
 }
 
-#WisdomGoBackButton:hover {
-  height: 130px;
+@keyframes bazoo2 {
+  0% {
+    font-size: 40px;
+  }
+  50% {
+    font-size: 20px;
+  }
+  100% {
+    font-size: 40px;
+  }
+}
+
+#ShallowsGoBackButton:hover {
+  height: 80px;
   width: 230px;
-  background-color: rgb(214, 133, 140);
-  border: 15px rgb(231, 172, 10) double;
-  border-radius: 30px;
+  background-color: rgb(44, 81, 130);
+  border: 5px rgb(191, 210, 234) double;
+  border-radius: 40px;
+  font-size: 29px;
   font-weight: bolder;
   font-family: Georgia, "Times New Roman", Times, serif;
-  text-shadow: 3px 3px rgb(122, 113, 113);
-  color: rgb(3, 3, 3);
-  overflow: hidden;
-  font-size: 34px;
+  text-shadow: 3px 3px rgb(17, 17, 17);
+  color: rgb(238, 247, 255);
+  opacity: 0.6;
+  margin-left: -300px;
+}
+
+#ResetQuizButton {
+  height: 80px;
+  width: 270px;
+  background-color: rgb(110, 148, 198);
+  border: 5px rgb(191, 210, 234) double;
+  border-radius: 40px;
+  font-size: 29px;
+  font-weight: bolder;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-shadow: 3px 3px rgb(17, 17, 17);
+  color: rgb(238, 247, 255);
+  opacity: 0.3;
+  animation: bazoo2 5s ease-in-out infinite;
+}
+
+#ResetQuizButton:hover {
+  height: 80px;
+  width: 270px;
+  background-color: rgb(43, 70, 105);
+  border: 5px rgb(191, 210, 234) double;
+  border-radius: 40px;
+  font-size: 29px;
+  font-weight: bolder;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-shadow: 3px 3px rgb(17, 17, 17);
+  color: rgb(238, 247, 255);
+  opacity: 0.6;
 }
 
 .quiz-container {
@@ -519,7 +683,7 @@
 }
 
 #ThreeBodyDiv {
-  height: 90vh;
+  height: 83vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -531,8 +695,8 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  height: 800px;
-  width: 1800px;
+  height: 83.5vh;
+  width: 100%;
   overflow: hidden;
   z-index: -9999;
   display: grid;

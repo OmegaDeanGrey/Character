@@ -5,74 +5,138 @@
   margin-top: 0;
 }
 
+#CCCMessage {
+  font-size: 80px;
+  color: rgb(184, 228, 218);
+  text-shadow: 2px 2px black;
+  animation: blink 5s infinite;
+}
+
 #NameLabel {
-  font-size: 40px;
-  margin: 10px;
+  font-size: 34px;
+  animation: fadeIn 4s ease-in;
   font-weight: bolder;
   font-family: Georgia, "Times New Roman", Times, serif;
-  margin-left: 200px;
+  margin-left: 120px;
+  text-shadow: 2px 2px 12px rgb(235, 234, 234);
+  color: rgb(23, 23, 48);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#NameInput:hover {
+  height: 100px;
+  margin: 90px;
+  animation: fadeIn 8s ease-in;
+  padding: 19px;
+  padding-left: 49px;
+  font-size: 58px;
+  display: flex;
+  color: rgb(0, 1, 1);
+  font-weight: bolder;
+  border-radius: 50px;
+  background-image: url("../../../public/Black.png");
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 15px;
+  border: 13px rgb(15, 73, 147) double;
+  border-bottom: 6px rgb(106, 162, 241) solid;
+  border-left: 8px rgb(106, 162, 241) solid;
+  text-shadow: 3px 3px 5px rgb(249, 249, 249);
+  opacity: 0.9;
+  box-shadow: 10px 14px 22px rgb(2, 2, 2),
+    10px 12px 22px rgb(255, 254, 254) inset;
 }
 
 #NameInput {
-  height: 30px;
-  margin: 10px;
-  padding: 9px;
-  font-size: 28px;
-  color: blue;
+  height: 100px;
+  margin: 90px;
+  padding: 19px;
+  padding-left: 49px;
+  font-size: 58px;
+  animation: fadeIn 8s ease-in;
+  display: flex;
+  color: rgb(0, 1, 1);
   font-weight: bolder;
-  border-radius: 30px;
-  border: 12px rgb(15, 73, 147) double;
-  text-shadow: 2px 1px grey;
+  border-radius: 50px;
+  background-image: url("../../../public/Black.png");
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 15px;
+  border: 13px rgb(15, 73, 147) double;
+  border-bottom: 6px rgb(106, 162, 241) solid;
+  border-left: 8px rgb(106, 162, 241) solid;
+  text-shadow: 3px 3px 5px rgb(249, 249, 249);
+  opacity: 0.9;
+  box-shadow: 10px 14px 22px rgb(2, 2, 2), 10px 12px 22px rgb(1, 1, 1) inset;
 }
 
 #NameButton {
-  font-size: 20px;
+  font-size: 40px;
   margin: 10px;
   border-radius: 30px;
   border: 10px black double;
-  padding: 4px;
+  padding: 14px;
   font-weight: bold;
-  text-shadow: 2px 1px grey;
-  background-color: rgb(173, 210, 239);
+  text-shadow: 2px 2px rgb(5, 5, 11);
+  background-color: rgb(11, 98, 163);
+  box-shadow: 6px 3px rgb(8, 24, 57) inset, 6px 8px rgb(4, 4, 5);
+  color: rgb(214, 217, 246);
 }
 
 #NameButton:hover {
-  background-color: azure;
-  font-size: 20px;
+  font-size: 40px;
   margin: 10px;
   border-radius: 30px;
-  border: 10px rgb(123, 159, 216) double;
-  padding: 4px;
+  border: 10px rgb(22, 68, 109) double;
+  padding: 14px;
   font-weight: bold;
-  text-shadow: 2px 1px rgb(73, 138, 168);
+  text-shadow: 2px 2px rgb(204, 204, 230);
+  background-color: rgb(105, 168, 217);
+  box-shadow: 6px 3px rgb(170, 193, 239) inset, 6px 8px rgb(4, 4, 5);
+  color: rgb(5, 15, 99);
 }
 
 #RaceSelectButton {
-  background-color: rgb(118, 3, 3);
-  color: bisque;
-  text-shadow: 3px 2px grey;
-  font-size: 53px;
+  background-color: rgb(6, 31, 46);
+  color: rgb(215, 215, 217);
+  text-shadow: 3px 2px rgb(46, 135, 225);
+  font-size: 43px;
   margin: 15px;
   padding: 9px;
   border-radius: 30px;
   height: 130px;
-  width: 245px;
+  width: 285px;
   font-family: Georgia, "Times New Roman", Times, serif;
-  border: 6px black double;
+  border: 4px rgb(34, 63, 113) solid;
+  border-right: 8px rgb(77, 106, 153) double;
+  border-bottom: 8px rgb(82, 122, 193) double;
+
+  box-shadow: 10px 16px 30px lightskyblue, 10px 10px 40px rgb(32, 57, 108) inset;
 }
 
 #RaceSelectButton:hover {
-  background-color: rgb(223, 152, 152);
-  color: rgb(13, 13, 12);
-  text-shadow: 3px 2px rgb(184, 177, 177);
-  font-size: 53px;
+  background-color: rgb(6, 31, 46);
+  color: rgb(215, 215, 217);
+  text-shadow: 7px 3px rgb(46, 135, 225);
+  font-size: 43px;
   margin: 15px;
   padding: 9px;
   border-radius: 30px;
   height: 130px;
-  width: 245px;
+  width: 285px;
   font-family: Georgia, "Times New Roman", Times, serif;
-  border: 6px rgb(235, 228, 228) double;
+  border: 4px rgb(34, 63, 113) solid;
+  border-right: 8px rgb(77, 106, 153) double;
+  border-bottom: 8px rgb(82, 122, 193) double;
+
+  box-shadow: 10px 16px 30px rgb(176, 222, 250),
+    10px 5px 40px rgb(138, 138, 156) inset;
 }
 
 #Stat {
@@ -84,10 +148,11 @@
 }
 
 #Stats {
-  color: rgb(14, 48, 77);
+  color: rgb(176, 213, 245);
   font-weight: bolder;
-  font-size: 43px;
-  text-shadow: 2px 3px rgb(213, 209, 209);
+  font-size: 33px;
+
+  text-shadow: 2px 3px rgb(6, 6, 6);
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
@@ -95,7 +160,7 @@
   font-size: 30px;
   margin: 14px;
   padding: 19px;
-  background-color: blue;
+  background-color: rgba(0, 0, 255, 0.721);
   color: azure;
   font-weight: bold;
   text-shadow: 2px 3px grey;
@@ -108,19 +173,18 @@
   font-size: 30px;
   margin: 14px;
   padding: 19px;
-  background-color: rgb(35, 167, 42);
-  color: rgb(13, 14, 14);
+  background-color: rgba(35, 167, 42, 0.755);
+
   font-weight: bold;
   text-shadow: 2px 3px grey;
   border-radius: 30px;
-  border: 8px rgb(32, 33, 34) double;
 }
 
 #SaveAndQuitButton {
   font-size: 30px;
   margin: 14px;
   padding: 19px;
-  background-color: blue;
+  background-color: rgba(0, 0, 255, 0.773);
   color: azure;
   font-weight: bold;
   text-shadow: 2px 3px grey;
@@ -133,19 +197,18 @@
   font-size: 30px;
   margin: 14px;
   padding: 19px;
-  background-color: rgb(223, 235, 92);
+  background-color: rgba(223, 235, 92, 0.836);
   color: azure;
   font-weight: bold;
   text-shadow: 2px 3px grey;
   border-radius: 30px;
-  border: 8px rgb(42, 41, 39) double;
 }
 
 #StartOverButton {
   font-size: 30px;
   margin: 14px;
   padding: 19px;
-  background-color: blue;
+  background-color: rgba(0, 0, 255, 0.539);
   color: azure;
   font-weight: bold;
   text-shadow: 2px 3px grey;
@@ -158,12 +221,11 @@
   font-size: 30px;
   margin: 14px;
   padding: 19px;
-  background-color: rgb(209, 45, 86);
+  background-color: rgba(209, 45, 86, 0.642);
   color: azure;
   font-weight: bold;
   text-shadow: 2px 3px grey;
   border-radius: 30px;
-  border: 8px rgb(23, 22, 20) double;
 }
 
 .Title {
@@ -190,9 +252,20 @@
 }
 
 #NameDiv {
-  background-image: url("../../../public/Rome.png");
+  background-image: url("../../../public/Lamp.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  height: 100vh;
+  height: 88vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#StartOut {
+  background-color: rgba(240, 248, 255, 0.118);
+  padding: 45px;
+  border-radius: 30px;
+  border-top-left-radius: 0%;
+  border: 13px white double;
 }

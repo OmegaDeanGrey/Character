@@ -1,22 +1,40 @@
-import React from "react";
-import "../../App.css";
+import React, { useEffect, useRef } from "react";
+import "./Home.css";
+import { useNavigate } from "react-router-dom";
 
 function HBackground() {
+  const navigate = useNavigate("");
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.play().catch((error) => {
+        console.error("Error attempting to play", error);
+      });
+    }
+  }, []);
+
   return (
-    <>
-      <div id="homeBG">
-        <div className="App">
-          <header className="App-header">
-            <h1 id="Homepage">
-              Quest for your true power,
-              <br />
-            </h1>
-            <h2 id="Homepage2">Form teams,</h2>
-            <h3 id="Homepage3">and Take on the world.</h3>
-          </header>
-        </div>
+    <div className="App" id="homeBG">
+      <div id="bannerhome">
+        <p id="MainTitle">EROWIND</p>
       </div>
-    </>
+
+      <div id="hbout">
+        <button className="homebuttons" onClick={() => navigate("/Start")}>
+          NEW GAME
+        </button>
+        <button className="homebuttons">CONTINUE</button>
+        <button
+          className="homebuttons"
+          id="EE"
+          onClick={() => navigate("/EE")}
+        ></button>
+      </div>
+      <audio id="T1" autoPlay loop controls ref={audioRef}>
+        <source src="../Luck.mp3" type="audio/mpeg" />
+      </audio>
+    </div>
   );
 }
 

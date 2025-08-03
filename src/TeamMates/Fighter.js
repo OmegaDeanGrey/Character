@@ -1,77 +1,82 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParty } from "../Components/Context/PartyContext";
+import baseStatsByClass from "../Components/Character/BaseStats";
 
 function Fighter() {
-  const [stats, setStats] = useState({});
   const [showOverlay, setShowOverlay] = useState(false);
   const navigate = useNavigate();
   const { party, addToParty } = useParty();
   const isPartyFull = party.length >= 5;
+  const [fighter, setFighter] = useState(null);
 
-  const names = [
-    "Alice",
-    "Bob",
-    "Charlie",
-    "Diana",
-    "Eve",
-    "Frank",
-    "Mike",
-    "Joe",
-    "Drew",
-    "Kornebari",
-    "Valeria",
-    "Dot",
-    "Vaughn",
-    "Bean",
-    "Jake",
-    "Alicia",
-    "Bobby",
-    "Charles",
-    "Dana",
-    "Evan",
-    "Franklin",
-    "Mika",
-    "Joey",
-    "Dora",
-    "Barni",
-    "Valerie",
-    "Dottie",
-    "Vince",
-    "Ben",
-    "Jack",
-  ];
-  const randomName = names[Math.floor(Math.random() * names.length)];
-  const [alert, setAlert] = useState("");
-  // useEffect(() => {
-  //   // Generate stats only once
-  //   setStats({
-  //     strength: Math.floor(Math.random() * 100),
-  //     intelligence: Math.floor(Math.random() * 100),
-  //     speed: Math.floor(Math.random() * 100),
-  //     defense: Math.floor(Math.random() * 100),
-  //     hp: Math.floor(Math.random() * 100),
-  //   });
-  // }, []);
+  const generateNewFighter = () => {
+    const names = [
+      "Bob",
+      "Charlie",
+      "Diana",
+      "Frank",
+      "Mike",
+      "Joe",
+      "Drew",
+      "Kornebari",
+      "Dot",
+      "Vaughn",
+      "Bean",
+      "Jake",
+      "Alicia",
+      "Bobby",
+      "Charles",
+      "Dana",
+      "Evan",
+      "Mika",
+      "Joey",
+      "Dora",
+      "Barni",
+      "Valerie",
+      "Dottie",
+      "Vince",
+      "Ben",
+    ];
 
-  const fighter = {
-    name: randomName,
-    role: "Fighter",
-    strength: Math.abs(Math.floor(Math.random() * 100) + 30),
-    intelligence: Math.abs(Math.floor(Math.random() * 100) - 30),
-    speed: Math.abs(Math.floor(Math.random() * 100) + 10),
-    defense: Math.abs(Math.floor(Math.random() * 100) + 10),
-    HP: Math.abs(Math.floor(Math.random() * 100) + 10),
+    // Get unique name
+    const usedNames = new Set(party.map((member) => member.name));
+    const availableNames = names.filter((name) => !usedNames.has(name));
+    const randomName =
+      availableNames.length > 0
+        ? availableNames[Math.floor(Math.random() * availableNames.length)]
+        : `Fighter${Math.floor(Math.random() * 1000)}`;
+
+    const fighterBase = baseStatsByClass["Fighter"];
+    const baseHP = fighterBase.HP + Math.floor(Math.random() * 10);
+
+    return {
+      name: randomName,
+      role: "Fighter",
+      strength: fighterBase.Strength + Math.floor(Math.random() * 10),
+      intelligence: fighterBase.Intelligence + Math.floor(Math.random() * 10),
+      speed: fighterBase.Speed + Math.floor(Math.random() * 10),
+      defense: fighterBase.Defense + Math.floor(Math.random() * 10),
+      maxHP: baseHP,
+      currentHP: baseHP,
+      level: 1,
+    };
   };
 
-  const handleAddToParty = () => {
-    if (isPartyFull) return;
-    if (party.length < 5) addToParty(fighter);
+  useEffect(() => {
+    setFighter(generateNewFighter());
+  }, []);
 
+  const handleAddToParty = () => {
+    if (isPartyFull || !fighter) return;
+
+    addToParty(fighter);
     setShowOverlay(true);
+
     setTimeout(() => {
-      setShowOverlay(false); // Hide overlay after 1 second
-    }, 1000);
+      setShowOverlay(false);
+      setFighter(generateNewFighter()); // Generate a new unique fighter
+    }, 2000);
   };
 
   return (
@@ -84,11 +89,12 @@ function Fighter() {
             left: 0,
             width: "100vw",
             height: "100vh",
-            backgroundColor: "rgba(37, 36, 36, 0.7)", // Semi-transparent black
+            backgroundColor: "rgba(37, 36, 36, 0.7)",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            zIndex: 1000,
+            zIndex: 9000,
+            textShadow: "0 0 10px black, 0 0 20px grey",
           }}
         >
           <h1
@@ -99,39 +105,56 @@ function Fighter() {
               animation: "fadeIn 1s ease-out",
             }}
           >
-            Hero - {fighter.name} <br />
+            Hero <br />
             Ready to Battle!
           </h1>
         </div>
       )}
+
+      {isPartyFull && (
+        <div>
+          <p id="PFFighter">Party Full</p>
+        </div>
+      )}
+
       <div className="containerdiv">
-        <video muted autoPlay loop controls id="FighterVid">
+        <video muted autoPlay playsInline id="FighterVid">
           <source src="./Fighter.mp4" type="video/mp4" />
         </video>
+        <div id="fighterall">
+          <h1 id="fightertitle">Fighter</h1>
+          <div className="desccanvas" id="Fighterdesc">
+            <h2>Ability: Slash</h2>
+            <p>Attacks Single front row with powerful blow</p>
+          </div>
+          <div>
+            <ul id="Fighteradj">
+              <li>Str: 60</li>
+              <li>Int: 10</li>
+              <li>Spd: 20</li>
+              <li>Def: 55</li>
+              <li>HP: 40</li>
+            </ul>
+          </div>
+        </div>
+        <div className="buttoncase">
+          <button
+            className="dabuttons"
+            id="FighterSelectButton"
+            onClick={handleAddToParty}
+            disabled={isPartyFull}
+          >
+            Recruit
+          </button>
 
-        <h1>Fighter</h1>
-        <h2>Abilty: Slash</h2>
-        <br />
-        <typed>Attacks Single front row with powerful blow</typed>
-        <ul>
-          <li>Str: +30</li>
-          <li>Int: -30</li>
-          <li>Speed: +10</li>
-          <li>Defense: +30</li>
-          <li>HP: +30</li>
-        </ul>
-        <button
-          id="FighterSelectButton"
-          onClick={handleAddToParty}
-          disabled={isPartyFull} // Disable button if the party is full
-          title={isPartyFull ? "Party is full" : ""} // Tooltip message
-          {...(isPartyFull ? "View Party" : "Party Full")}
-        >
-          Recruit
-        </button>
-        <button id="FighterbttButton" onClick={() => navigate("/TeamIndex")}>
-          Back to Team Index
-        </button>
+          <button
+            className="dabuttons"
+            id="FighterbttButton"
+            onClick={() => navigate("/Party")}
+          >
+            View Party
+          </button>
+        </div>
       </div>
     </>
   );

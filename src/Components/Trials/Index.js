@@ -15,7 +15,7 @@ function TrialsIndex() {
             navigate("/TrialOne");
           }}
         >
-          Wisdom
+          Shallows
         </button>
       </div>
       <div>
@@ -26,7 +26,7 @@ function TrialsIndex() {
             navigate("/TrialFour");
           }}
         >
-          Luck
+          Volcanic Cave
         </button>
       </div>
       <div>
@@ -37,7 +37,7 @@ function TrialsIndex() {
             navigate("/TrialTwo");
           }}
         >
-          Alignment
+          Lofty Peaks
         </button>
       </div>
       <br />
@@ -49,7 +49,7 @@ function TrialsIndex() {
             navigate("/TrialFive");
           }}
         >
-          Courage
+          Cloud Fortress
         </button>
       </div>
       <div>
@@ -60,7 +60,7 @@ function TrialsIndex() {
             navigate("/TrialThree");
           }}
         >
-          LifeForce
+          Western Wood
         </button>
       </div>
       <div>
@@ -71,7 +71,7 @@ function TrialsIndex() {
             navigate("/TrialSix");
           }}
         >
-          Knowledge
+          Great Hills
         </button>
       </div>
     </div>

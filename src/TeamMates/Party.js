@@ -1,44 +1,119 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useParty } from "../Components/Context/PartyContext.js";
 import "./TeamMates.css";
+import Character from "../Components/Character/Character.js";
 
 function Party() {
-  const { party, removeFromParty, clearParty } = useParty();
+  const { party, removeFromParty, clearParty, setParty } = useParty();
+
+  const sortByStrength = () => {
+    const sorted = [...party].sort((a, b) => b.strength - a.strength);
+    setParty(sorted);
+  };
+
+  const sortByInt = () => {
+    const sorted = [...party].sort((a, b) => b.intelligence - a.intelligence);
+    setParty(sorted);
+  };
+
+  const sortByDef = () => {
+    const sorted = [...party].sort((a, b) => b.defense - a.defense);
+    setParty(sorted);
+  };
+
+  const sortBySpeed = () => {
+    const sorted = [...party].sort((a, b) => b.speed - a.speed);
+    setParty(sorted);
+  };
+
+  const sortByHP = () => {
+    const sorted = [...party].sort((a, b) => b.maxHP - a.maxHP);
+    setParty(sorted);
+  };
 
   return (
     <div className="party-container">
       <div id="BgParty">
-        <h2 id="PartyTitle">Party Members</h2>
-
+        <h2 id="PartyTitle">Hero</h2>
+        <Character />
         {party.length === 0 ? (
-          <p>No members in your party yet!</p>
+          <p id="nmiypy">No members in your party yet!</p>
         ) : (
-          <ol className="party-list">
-            {party.map((member, index) => (
-              <li id="partymember" key={index} className="party-member">
-                <div>
-                  <strong id="memberName">
-                    {member.name}: {member.role}
-                  </strong>
-                  <p id="memberStats">
-                    Str: {member.strength} | Int: {member.intelligence} | Speed:{" "}
-                    {member.speed} | Defense: {member.defense} | HP: {member.HP}
-                    <button
-                      className="remove-button"
-                      onClick={() => removeFromParty(index)} // Remove member
-                    >
-                      Remove
-                    </button>
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ol>
+          <>
+            <h2 id="partylisttitle">Party</h2>
+            <ol className="party-list">
+              <h4 id="partylisttopper">SCROLL TO VIEW PARTY</h4>
+              {party.map((member, index) => (
+                <li key={index} className="party-member-card">
+                  <div className="card-header">
+                    <h3>{member.name}</h3>
+                    <span className="role-tag">{member.role}</span>
+                  </div>
+                  <div className="card-body">
+                    <p>🛡️ Defense: {member.defense}</p>
+                    <p>⚔️ Strength: {member.strength}</p>
+                    <p>🧠 Intelligence: {member.intelligence}</p>
+                    <p>💨 Speed: {member.speed}</p>
+                    <p>❤️ HP: {member.maxHP}</p>
+                  </div>
+                  <button
+                    className="remove-button fancy-remove"
+                    onClick={() => removeFromParty(index)}
+                  >
+                    ❌ Remove
+                  </button>
+                </li>
+              ))}
+            </ol>
+          </>
         )}
-
-        <button id="ClearPartyButton" onClick={clearParty}>
-          Clear Party
-        </button>
+        {party.length !== 0 && (
+          <div id="partybuttons">
+            <button
+              className="sortbutton"
+              id="ClearPartyButton"
+              onClick={clearParty}
+            >
+              Clear Party
+            </button>
+            <button
+              className="sortbutton"
+              id="SortByStrengthButton"
+              onClick={sortByStrength}
+            >
+              Sort by Strength
+            </button>
+            <button
+              className="sortbutton"
+              id="SortByIntButton"
+              onClick={sortByInt}
+            >
+              Sort by Int
+            </button>
+            <button
+              className="sortbutton"
+              id="SortByDefButton"
+              onClick={sortByDef}
+            >
+              Sort by Def
+            </button>
+            <button
+              className="sortbutton"
+              id="SortBySpeedButton"
+              onClick={sortBySpeed}
+            >
+              Sort by Speed
+            </button>
+            <button
+              className="sortbutton"
+              id="SortByHPButton"
+              onClick={sortByHP}
+            >
+              Sort by HP
+            </button>
+          </div>
+        )}
+        ;
       </div>
     </div>
   );

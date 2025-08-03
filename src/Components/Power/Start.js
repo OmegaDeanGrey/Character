@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Power.css";
-import HBackground from "../Home/HBackground";
 
 const Start = ({ onCompletion, onSaveAndQuit }) => {
   const steps = [
@@ -10,11 +9,36 @@ const Start = ({ onCompletion, onSaveAndQuit }) => {
       choices: [
         {
           label: "Human",
-          related: [{ label: "Barbarian" }, { label: "European" }],
+          related: [
+            { label: "Barbarian" },
+            { label: "Tribesman" },
+            { label: "Plainsman" },
+            { label: "Eastern" },
+          ],
         },
         {
           label: "Elf",
-          related: [{ label: "Sylvan Elf" }, { label: "Drow Elf" }],
+          related: [
+            {
+              label: "Sylvan Elf",
+              related: [
+                { label: "Great Hills Elf" },
+                { label: "Western Wood Elf" },
+                { label: "Valley Dells Elf" },
+              ],
+            },
+            {
+              label: "Drow Elf",
+              related: [
+                {
+                  label: "Mountain Drow",
+                },
+                {
+                  label: "Hill Drow",
+                },
+              ],
+            },
+          ],
         },
         {
           label: "Dwarf",
@@ -32,31 +56,64 @@ const Start = ({ onCompletion, onSaveAndQuit }) => {
       choices: [
         {
           label: "Fighter",
-          related: [{ label: "Samurai" }, { label: "Wrestler" }],
+          related: [
+            { label: "Samurai" },
+            { label: "Wrestler" },
+            { label: "Paladin" },
+            { label: "Knight" },
+          ],
         },
         { label: "Thief", related: [{ label: "Scout" }, { label: "Ninja" }] },
         {
           label: "Mage",
           related: [
-            { label: "Magi White" },
-            { label: "Magi Black" },
-            { label: "Magi Red" },
+            { label: "MagiWhite" },
+            { label: "MagiBlack" },
+            { label: "MagiRed" },
           ],
         },
-        { label: "Cleric" },
-        { label: "Ranger" },
+        { label: "Cleric", related: [{ label: "Priest" }, { label: "Monk" }] },
+        {
+          label: "Ranger",
+          related: [{ label: "BeastMaster" }, { label: "Tracker" }],
+        },
       ],
     },
     {
       label: "Element",
       choices: [
-        { label: "Earth" },
-        { label: "Water" },
-        { label: "Wind" },
-        { label: "Fire" },
-        { label: "Lightning" },
-        { label: "Holy" },
-        { label: "Dark" },
+        {
+          label: "Earth",
+          related: [
+            { label: "Stone" },
+            { label: "Mineral" },
+            { label: "Sand" },
+          ],
+        },
+        {
+          label: "Water",
+          related: [{ label: "Ice" }, { label: "Vitae" }, { label: "Hydro" }],
+        },
+        {
+          label: "Wind",
+          related: [
+            { label: "Air" },
+            { label: "Cloud" },
+            { label: "Lightning" },
+          ],
+        },
+        { label: "Fire", related: [{ label: "Volcanic" }, { label: "Pyro" }] },
+
+        { label: "Holy", related: [{ label: "Light" }, { label: "Nimbus" }] },
+        { label: "Dark", related: [{ label: "Shadow" }, { label: "Gravity" }] },
+        {
+          label: "Time",
+          related: [{ label: "Manipulator" }, { label: "Traveler" }],
+        },
+        {
+          label: "Celestial",
+          related: [{ label: "Luck" }, { label: "Gigas" }],
+        },
       ],
     },
   ];
@@ -68,11 +125,7 @@ const Start = ({ onCompletion, onSaveAndQuit }) => {
   const [isNameStep, setIsNameStep] = useState(true);
   const [isComplete, setIsComplete] = useState(false);
 
-  const navigate = useNavigate();
-
-  const saveToLocalStorage = () => {
-    localStorage.setItem("characterStats", JSON.stringify(characterStats));
-  };
+  const navigate = useNavigate("");
 
   const handleNameSubmit = (e) => {
     e.preventDefault();
@@ -81,6 +134,10 @@ const Start = ({ onCompletion, onSaveAndQuit }) => {
       Name: characterName,
     }));
     setIsNameStep(false);
+  };
+
+  const saveToLocalStorage = () => {
+    localStorage.setItem("characterStats", JSON.stringify(characterStats));
   };
 
   const handleChoiceClick = (choice) => {
@@ -100,6 +157,7 @@ const Start = ({ onCompletion, onSaveAndQuit }) => {
       } else {
         setCurrentChoices([]);
         setIsComplete(true);
+        localStorage.setItem("shopEnabled", "true");
       }
     }
   };
@@ -112,14 +170,17 @@ const Start = ({ onCompletion, onSaveAndQuit }) => {
     setIsNameStep(true);
     setIsComplete(false);
     localStorage.removeItem("characterStats");
+    localStorage.removeItem("trialsEnabled");
+    localStorage.removeItem("shopEnabled");
+    localStorage.removeItem("character");
   };
 
   return (
     <div id="NameDiv">
-      <h1 id="CYC">Create Your Character</h1>
       {isComplete ? (
-        <div>
-          <h2>Character Creation Complete!</h2>
+        <div id="StartOut">
+          {/* <h1 id="CYC">Tell Us</h1> */}
+          <h2 id="CCCMessage">Character Complete!</h2>
           <ul id="StatsAll">
             {Object.entries(characterStats).map(([key, value]) => (
               <li id="Stats" key={key}>
@@ -132,6 +193,7 @@ const Start = ({ onCompletion, onSaveAndQuit }) => {
               id="ReadyButton"
               onClick={() => {
                 saveToLocalStorage();
+                localStorage.setItem("character", "true");
                 localStorage.setItem("trialsEnabled", "true");
                 onCompletion();
                 navigate("/Trials");
@@ -146,7 +208,7 @@ const Start = ({ onCompletion, onSaveAndQuit }) => {
                 saveToLocalStorage();
                 localStorage.removeItem("trialsEnabled");
                 if (onSaveAndQuit) onSaveAndQuit(); // Optional execution
-                navigate("/Home");
+                navigate("./Home");
               }}
               style={{ margin: "10px" }}
             >
@@ -163,18 +225,20 @@ const Start = ({ onCompletion, onSaveAndQuit }) => {
         </div>
       ) : isNameStep ? (
         <form onSubmit={handleNameSubmit}>
-          <label id="NameLabel">
-            Character Name:
-            <input
-              id="NameInput"
-              type="text"
-              value={characterName}
-              onChange={(e) => setCharacterName(e.target.value)}
-              required
-            />
-          </label>
+          <label id="NameLabel">How shall we address you oh brave one?</label>
+          <br />
+          <input
+            id="NameInput"
+            type="text"
+            value={characterName}
+            onChange={(e) => setCharacterName(e.target.value)}
+            required
+            placeholder="Enter Name Here  O"
+          />
+
+          <br />
           <button id="NameButton" type="submit">
-            Next
+            Confirm
           </button>
         </form>
       ) : (

@@ -1,18 +1,31 @@
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
-  padding: 1rem 2rem;
-  background-color: rgba(20, 9, 65, 0.9);
+
+  background: linear-gradient(
+    rgb(28, 18, 66),
+    rgb(28, 18, 66),
+    rgb(28, 18, 66),
+    rgb(76, 76, 129),
+    rgb(99, 99, 177),
+    rgb(28, 18, 66),
+    rgb(28, 18, 66)
+  );
   color: white;
+  text-shadow: 3px 3px rgb(3, 3, 3);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  border-bottom: 15px white double;
+  /* padding-left: 130px; */
 }
 
 .navbar-logo {
-  font-size: 1.5rem;
+  font-size: 39px;
   font-weight: bold;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  text-shadow: 3px 3px 3px;
+  text-shadow: 3px 3px black;
   color: antiquewhite;
+  text-decoration: none;
 }
 
 .navbar-links {
@@ -20,14 +33,36 @@
   display: flex;
   gap: 1rem;
   font-weight: bolder;
+  font-size: 32px;
 }
 
 .navbar-links li a {
   text-decoration: none;
-  color: white;
-  transition: color 0.3s ease;
+  text-shadow: 2px 2px rgb(7, 7, 7);
+  padding: 14px;
+  color: #eff0f6;
+  margin-left: 50px;
+  border: 2px rgb(45, 65, 117) double;
+  transition: color 1s ease;
+  transition: border-radius 2s ease-in;
+  border-bottom: 6px rgb(36, 60, 139) solid;
+  border-right: 2px rgb(36, 60, 139) dashed;
+  border-radius: 30px;
+
+  box-shadow: 3px 3px rgb(108, 145, 181);
 }
 
 .navbar-links li a:hover {
-  color: #ff5733;
+  text-shadow: 2px 2px rgb(13, 13, 13);
+  border: 2px powderblue double;
+  border-bottom: 6px rgb(163, 176, 218) solid;
+  border-right: 2px rgb(87, 118, 222) solid;
+
+  border-top-left-radius: 0px;
+}
+
+#links {
+  display: flex;
+  padding-left: 40px;
+  padding-right: 50px;
 }
