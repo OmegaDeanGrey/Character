@@ -1,0 +1,56 @@
+.dialog-wrapper {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 800px;
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.dialog-portrait {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border: 3px solid #fff;
+  border-radius: 6px;
+}
+
+.dialog-box {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.85);
+  border: 3px solid #fff;
+  border-radius: 8px;
+  padding: 12px;
+  color: #fff;
+  font-family: "Press Start 2P", monospace; /* optional retro font */
+}
+
+.dialog-name {
+  font-weight: bold;
+  margin-bottom: 6px;
+  border-bottom: 2px solid #fff;
+  padding-bottom: 4px;
+}
+
+.dialog-text {
+  font-size: 14px;
+  line-height: 1.4;
+  min-height: 60px; /* keeps box steady if text is short */
+}
+
+.dialog-button {
+  margin-top: 10px;
+  background: #222;
+  border: 2px solid #fff;
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#choices {
+  font-size: 20px;
+}

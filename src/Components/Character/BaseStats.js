@@ -5,6 +5,8 @@ const baseStatsByClass = {
     Speed: 80,
     Defense: 40,
     HP: 40,
+    BG: "/FighterBG.png",
+    Icon: "/HeroIcon.png",
   },
   Wrestler: {
     Strength: 70,
@@ -12,6 +14,8 @@ const baseStatsByClass = {
     Speed: 50,
     Defense: 50,
     HP: 70,
+    BG: "/FighterBG.png",
+    Icon: "/HeroIcon.png",
   },
   Paladin: {
     Strength: 70,
@@ -19,6 +23,8 @@ const baseStatsByClass = {
     Speed: 40,
     Defense: 60,
     HP: 80,
+    BG: "/FighterBG.png",
+    Icon: "/HeroIcon.png",
   },
   Knight: {
     Strength: 80,
@@ -26,6 +32,8 @@ const baseStatsByClass = {
     Speed: 50,
     Defense: 70,
     HP: 70,
+    BG: "/FighterBG.png",
+    Icon: "/HeroIcon.png",
   },
   Scout: {
     Strength: 30,
@@ -33,6 +41,8 @@ const baseStatsByClass = {
     Speed: 80,
     Defense: 40,
     HP: 50,
+    BG: "/FighterBG.png",
+    Icon: "/HeroIcon.png",
   },
   Ninja: {
     Strength: 45,
@@ -40,6 +50,8 @@ const baseStatsByClass = {
     Speed: 80,
     Defense: 50,
     HP: 40,
+    BG: "/FighterBG.png",
+    Icon: "/HeroIcon.png",
   },
   MagiWhite: {
     Strength: 10,
@@ -47,6 +59,8 @@ const baseStatsByClass = {
     Speed: 20,
     Defense: 35,
     HP: 35,
+    BG: "/FighterBG.png",
+    Icon: "/HeroIcon.png",
   },
   MagiBlack: {
     Strength: 10,
@@ -54,6 +68,8 @@ const baseStatsByClass = {
     Speed: 30,
     Defense: 30,
     HP: 35,
+    BG: "/FighterBG.png",
+    Icon: "/HeroIcon.png",
   },
   MagiRed: {
     Strength: 10,
@@ -61,6 +77,8 @@ const baseStatsByClass = {
     Speed: 35,
     Defense: 35,
     HP: 40,
+    BG: "/FighterBG.png",
+    Icon: "/HeroIcon.png",
   },
   Priest: {
     Strength: 30,
@@ -68,6 +86,8 @@ const baseStatsByClass = {
     Speed: 50,
     Defense: 35,
     HP: 70,
+    BG: "/FighterBG.png",
+    Icon: "/FighterIcon.png",
   },
   Monk: {
     Strength: 80,
@@ -75,6 +95,8 @@ const baseStatsByClass = {
     Speed: 30,
     Defense: 45,
     HP: 70,
+    BG: "/FighterBG.png",
+    Icon: "/HeroIcon.png",
   },
   BeastMaster: {
     Strength: 60,
@@ -82,6 +104,8 @@ const baseStatsByClass = {
     Speed: 50,
     Defense: 65,
     HP: 80,
+    BG: "/FighterBG.png",
+    Icon: "/HeroIcon.png",
   },
   Tracker: {
     Strength: 50,
@@ -89,6 +113,8 @@ const baseStatsByClass = {
     Speed: 40,
     Defense: 65,
     HP: 40,
+    BG: "/FighterBG.png",
+    Icon: "/HeroIcon.png",
   },
   Fighter: {
     Strength: 60,
@@ -96,6 +122,8 @@ const baseStatsByClass = {
     Speed: 20,
     Defense: 55,
     HP: 40,
+    BG: "/FighterBG.png",
+    Icon: "/FighterIcon.png",
   },
   Cleric: {
     Strength: 20,
@@ -103,6 +131,8 @@ const baseStatsByClass = {
     Speed: 20,
     Defense: 35,
     HP: 30,
+    BG: "/ClericBG.png",
+    Icon: "/ClericIcon.png",
   },
   Mage: {
     Strength: 5,
@@ -110,6 +140,8 @@ const baseStatsByClass = {
     Speed: 20,
     Defense: 25,
     HP: 20,
+    BG: "/MageBG.png",
+    Icon: "/MageIcon.png",
   },
   Archer: {
     Strength: 35,
@@ -117,6 +149,8 @@ const baseStatsByClass = {
     Speed: 50,
     Defense: 35,
     HP: 30,
+    BG: "/ArcherBG.png",
+    Icon: "/ArcherIcon.png",
   },
   Rogue: {
     Strength: 30,
@@ -124,6 +158,8 @@ const baseStatsByClass = {
     Speed: 60,
     Defense: 25,
     HP: 30,
+    BG: "/RogueBG.png",
+    Icon: "/RogueIcon.png",
   },
   Summoner: {
     Strength: 20,
@@ -131,6 +167,8 @@ const baseStatsByClass = {
     Speed: 10,
     Defense: 45,
     HP: 40,
+    BG: "/FighterBG.png",
+    Icon: "/FighterIcon.png",
   },
   Fairy: {
     Strength: 15,
@@ -138,6 +176,8 @@ const baseStatsByClass = {
     Speed: 40,
     Defense: 35,
     HP: 25,
+    BG: "/FighterBG.png",
+    Icon: "/FighterIcon.png",
   },
   Elemental: {
     Strength: 10,
@@ -145,6 +185,8 @@ const baseStatsByClass = {
     Speed: 20,
     Defense: 30,
     HP: 30,
+    BG: "/FighterBG.png",
+    Icon: "/FighterIcon.png",
   },
   Ranger: {
     Strength: 40,
@@ -152,13 +194,17 @@ const baseStatsByClass = {
     Speed: 40,
     Defense: 40,
     HP: 40,
+    BG: "/FighterBG.png",
+    Icon: "/FighterIcon.png",
   },
   Giant: {
     Strength: 50,
     Intelligence: 5,
-    Speed: 25,
+    Speed: 15,
     Defense: 65,
     HP: 50,
+    BG: "/FighterBG.png",
+    Icon: "/FighterIcon.png",
   },
   Vampire: {
     Strength: 60,
@@ -166,13 +212,17 @@ const baseStatsByClass = {
     Speed: 60,
     Defense: 25,
     HP: 25,
+    BG: "/FighterBG.png",
+    Icon: "/FighterIcon.png",
   },
   WereWolf: {
     Strength: 50,
     Intelligence: 15,
     Speed: 37,
-    Defense: 45,
-    HP: 40,
+    Defense: 35,
+    HP: 20,
+    BG: "/FighterBG.png",
+    Icon: "/FighterIcon.png",
   },
   DemiGod: {
     Strength: 90,
@@ -180,6 +230,8 @@ const baseStatsByClass = {
     Speed: 30,
     Defense: 45,
     HP: 30,
+    BG: "/FighterBG.png",
+    Icon: "/FighterIcon.png",
   },
   Valkyrie: {
     Strength: 50,
@@ -187,6 +239,8 @@ const baseStatsByClass = {
     Speed: 50,
     Defense: 45,
     HP: 30,
+    BG: "/FighterBG.png",
+    Icon: "/FighterIcon.png",
   },
   Witch: {
     Strength: 12,
@@ -194,6 +248,8 @@ const baseStatsByClass = {
     Speed: 32,
     Defense: 25,
     HP: 22,
+    BG: "/FighterBG.png",
+    Icon: "/FighterIcon.png",
   },
   Satyr: {
     Strength: 43,
@@ -201,6 +257,8 @@ const baseStatsByClass = {
     Speed: 40,
     Defense: 35,
     HP: 40,
+    BG: "/FighterBG.png",
+    Icon: "/FighterIcon.png",
   },
   Centaur: {
     Strength: 50,
@@ -208,6 +266,8 @@ const baseStatsByClass = {
     Speed: 40,
     Defense: 45,
     HP: 50,
+    BG: "/FighterBG.png",
+    Icon: "/FighterIcon.png",
   },
   Android: {
     Strength: 80,
@@ -215,6 +275,8 @@ const baseStatsByClass = {
     Speed: 40,
     Defense: 35,
     HP: 40,
+    BG: "/FighterBG.png",
+    Icon: "/FighterIcon.png",
   },
 };
 export default baseStatsByClass;

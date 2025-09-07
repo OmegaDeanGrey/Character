@@ -425,7 +425,7 @@
   background-image: url("../../public/Elemental.png");
   background-repeat: repeat;
   background-size: small;
-  animation: twinkle 5s alternate infinite;
+  /* animation: twinkle 5s alternate infinite; */
 }
 
 #ElementalButton:hover {
@@ -433,8 +433,7 @@
   background-repeat: repeat;
   background-size: small;
   animation: twinkle 5s alternate infinite;
-  font-weight: bolder;
-  font-size: 28px;
+
   border: white 11px double;
   text-shadow: 2px 2px rgba(196, 196, 183, 0.981);
 }
@@ -604,6 +603,10 @@
 
 #nmiypy {
   width: 10%;
+  color: aliceblue;
+  font-weight: bold;
+  margin: 20px;
+  font-size: 20px;
 }
 
 @keyframes rotate {
@@ -641,9 +644,6 @@
   margin-top: 60px;
   font-size: 42px;
   text-shadow: 2px 2px grey;
-}
-
-#partymember {
 }
 
 #memberName {
@@ -942,7 +942,9 @@
   justify-content: center;
   border: 13px rgb(244, 227, 244) double;
   /* margin-left: -1300px; */
-  margin-top: 100px;
+  margin-top: 50px;
+  border-radius: 30px;
+  border-top-left-radius: 0%;
   box-shadow: 12px 12px 13px black, 33px 15px 21px rgb(243, 242, 246) inset;
 }
 
@@ -1057,7 +1059,7 @@
 
 #CharacterTitle {
   color: rgb(10, 56, 99);
-  font-size: 45px;
+  font-size: 55px;
   text-shadow: 2px 2px rgb(249, 245, 245), 4px 7px 8px rgb(5, 5, 5);
   margin: 20px;
   margin-top: -340px;
@@ -1092,8 +1094,8 @@
 
 #characterinsides {
   padding: 25px;
-  margin-left: -40px;
-  margin-top: 90px;
+  /* margin-left: -40px; */
+  /* margin-top: 90px; */
   width: 550px;
   position: absolute;
 }
@@ -1110,19 +1112,21 @@
 }
 
 .defaultlist {
-  font-size: 20px;
+  font-size: 30px;
   background-color: rgb(7, 6, 7);
   height: 109px;
   width: 109px;
-  margin: 15px;
-
+  margin: 45px;
+  margin-top: 200px;
+  margin-bottom: 20px;
   padding: 27px;
   padding-bottom: 30px;
   border-radius: 50%;
   color: rgba(233, 237, 240, 0.756);
   text-shadow: 12px 12px 12px rgb(8, 8, 8);
   border: 3px rgb(73, 71, 71) solid;
-  box-shadow: 14px 5px 42px rgb(162, 159, 159) inset, 14px 5px 42px rgb(4, 4, 4);
+  box-shadow: 14px 5px 42px rgb(162, 159, 159) inset,
+    14px 15px 22px rgb(2, 2, 2);
   font-weight: bolder;
 }
 

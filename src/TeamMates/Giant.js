@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParty } from "../Components/Context/PartyContext";
+import baseStatsByClass from "../Components/Character/BaseStats";
 
 function Giant() {
   const [showOverlay, setShowOverlay] = useState(false);
@@ -9,58 +10,56 @@ function Giant() {
   const isPartyFull = party.length >= 5;
   const [giant, setGiant] = useState("");
 
-  useEffect(() => {
+  const generateNewGiant = () => {
     const names = [
-      "Rod",
-      "Samuel",
-      "Arian",
-      "Adrian",
-      "Riley",
-      "Simon",
-      "Blade",
-      "Frost",
-      "Deacon",
-      "LeGrange",
-      "Dean",
-      "Alice",
-      "Diana",
-      "Eve",
-      "Frank",
-      "Mike",
-      "Joe",
-      "Drew",
-      "Kornebari",
-      "Valeria",
+      "Franken",
+      "Hober",
+      "Gord",
       "Dot",
-      "Vaughn",
-      "Bean",
-      "Lestat",
-      "Vlad",
-      "Tom",
-      "Nosfer",
-      "Pitt",
-      "Blackula",
+      "Riad",
+      "Clops",
+      "Bill",
+      "Alma",
+      "Sarah",
+      "Caramon",
     ];
-    const randomName = names[Math.floor(Math.random() * names.length)];
-    const newGiant = {
+
+    const usedNames = new Set(party.map((member) => member.name));
+    const availableNames = names.filter((name) => !usedNames.has(name));
+    const randomName =
+      availableNames.length > 0
+        ? availableNames[Math.floor(Math.random() * availableNames.length)]
+        : `Giant${Math.floor(Math.random() * 1000)}`;
+
+    const giantBase = baseStatsByClass["Giant"];
+    const baseHP = giantBase.HP + Math.floor(Math.random() * 10);
+
+    return {
       name: randomName,
       role: "Giant",
-      strength: Math.abs(Math.floor(Math.random() * 100) + 30),
-      intelligence: Math.abs(Math.floor(Math.random() * 100) - 30),
-      speed: Math.abs(Math.floor(Math.random() * 100) + 10),
-      defense: Math.abs(Math.floor(Math.random() * 100) + 10),
-      HP: Math.abs(Math.floor(Math.random() * 100) + 10),
+      strength: giantBase.Strength + Math.floor(Math.random() * 10),
+      intelligence: giantBase.Intelligence + Math.floor(Math.random() * 10),
+      speed: giantBase.Speed + Math.floor(Math.random() * 10),
+      defense: giantBase.Defense + Math.floor(Math.random() * 10),
+      maxHP: baseHP,
+      currentHP: baseHP,
+      level: 1,
     };
-    setGiant(newGiant);
+  };
+
+  useEffect(() => {
+    setGiant(generateNewGiant());
   }, []);
 
   const handleAddToParty = () => {
-    if (isPartyFull) return;
-    if (party.length < 5) addToParty(giant);
-    if (!giant) return;
+    if (isPartyFull || !giant) return;
+
+    addToParty(giant);
     setShowOverlay(true);
+
     setTimeout(() => {
-      setShowOverlay(false); // Hide overlay after 1 second
+      setShowOverlay(false);
+      setGiant(generateNewGiant()); // Generate a new unique fighter
     }, 3000);
   };
 
@@ -91,25 +90,32 @@ function Giant() {
             }}
           >
             Giant <br />
-            Thrwomp!
+            Thwomp!
           </h1>
         </div>
       )}
+
+      {isPartyFull && (
+        <div>
+          <p id="PFFighter">Party Full</p>
+        </div>
+      )}
+
       <div className="containerdiv">
         <div id="Giantall">
           <h1 id="Gianttitle">Giant</h1>
           <div id="Giantdesc">
-            <h2>Seismic</h2>
-
-            <p>Damages all characters on both teams</p>
+            <h2 id="Giantdesctitle">Ability: Seismic</h2>
+            <br />
+            <p>Chance to hurt enemies and allies</p>
           </div>
           <div id="Giantatt">
             <ul>
-              <li>Str: +40</li>
-              <li>Int: -60</li>
-              <li>Speed: +10</li>
-              <li>Defense: +10</li>
-              <li>HP: +20</li>
+              <li>Str: 50</li>
+              <li>Int: 5</li>
+              <li>Spd: 15</li>
+              <li>Def: 65</li>
+              <li>HP: 50</li>
             </ul>
           </div>
 
@@ -117,17 +123,11 @@ function Giant() {
             className="Giantbutt"
             id="GiantSelectButton"
             onClick={handleAddToParty}
-            disabled={isPartyFull} // Disable button if the party is full
-            title={isPartyFull ? "Party is full" : ""} // Tooltip message
-            // {...(isPartyFull ? "View Party" : "Party Full")}
+            disabled={isPartyFull}
           >
             Recruit
           </button>
-          {isPartyFull && (
-            <div>
-              <p id="PFGiant">Party Full</p>
-            </div> // Disable button if the party is full
-          )}
+
           <button
             className="Giantbutt"
             id="GiantbttButton"

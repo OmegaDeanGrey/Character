@@ -7,18 +7,16 @@ function Bressone() {
   const { party } = useParty();
 
   const [showMenu, setShowMenu] = useState(false);
-  //   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleSpeech = () => {
     setShowMenu(true);
-    // setMenuOpen(true);
   };
 
   const handleClick = (member, index) => {
     const messages = [
       "Welcome, friend!",
       "Stay sharp out there!",
-      "Together we stand!",
+      "Look to the Peak in the East",
       "For glory and honor!",
       "Watch my back, I'll watch yours!",
     ];
@@ -52,7 +50,7 @@ function Bressone() {
                 onClick={showMenu ? () => setShowMenu(false) : handleSpeech}
                 className="lnbutt"
               >
-                {showMenu ? "Forget Talking" : "Talk to Team"}
+                {showMenu ? "Nevermindxx" : "Talk to Team"}
               </button>
             </li>
             <li>

@@ -1,6 +1,7 @@
 import { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Trials.css";
+import IQ from "./IQ";
 
 function TrialFour() {
   const audioRef = useRef(null);
@@ -23,17 +24,17 @@ function TrialFour() {
         </audio>
 
         <div>
-          <p id="LuckTitle">Luck Trial</p>
+          <p id="FourTitle">Volcanic Cave Trial</p>
         </div>
-        <div>
-          <h3 id="LuckText">
-            Welcome to the Luck Trial;
-            <br />
-            TBD
-          </h3>
+
+        <h3 id="FourText">
+          Choose the Odd one Out, there is only one correct answer;
+        </h3>
+        <div id="IQCase">
+          <IQ />
         </div>
         <button
-          id="LuckGoBackButton"
+          id="FourGoBackButton"
           onClick={() => {
             navigate("/Trials");
           }}

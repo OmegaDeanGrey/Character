@@ -36,7 +36,6 @@ function Fighter() {
       "Valerie",
       "Dottie",
       "Vince",
-      "Ben",
     ];
 
     // Get unique name
@@ -60,6 +59,8 @@ function Fighter() {
       maxHP: baseHP,
       currentHP: baseHP,
       level: 1,
+      BG: fighterBase.BG,
+      Icon: fighterBase.Icon,
     };
   };
 
@@ -105,7 +106,7 @@ function Fighter() {
               animation: "fadeIn 1s ease-out",
             }}
           >
-            Hero <br />
+            Fighter <br />
             Ready to Battle!
           </h1>
         </div>

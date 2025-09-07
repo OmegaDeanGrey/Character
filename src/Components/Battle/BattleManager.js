@@ -10,6 +10,11 @@ import {
   rogueBackstabAction,
   fairyPolarityAction,
   vampireDrainAction,
+  elementalBurstAction,
+  giantSeismicAction,
+  werewolfHumanAttackAction,
+  werewolfBeastAttackAction,
+  heroAction,
 } from "./BattleActions";
 
 function BattleManager({ enemies, onBattleEnd }) {
@@ -23,33 +28,51 @@ function BattleManager({ enemies, onBattleEnd }) {
   const [battleOver, setBattleOver] = useState(false);
 
   useEffect(() => {
-    const playerSetup = party.map((p, index) => ({
-      ...p,
-      id: `player-${index}`,
-      currentHP:
-        typeof p.currentHP === "number"
-          ? p.currentHP
-          : typeof p.maxHP === "number"
-          ? p.maxHP
-          : 1,
-    }));
+    const mainHero = JSON.parse(localStorage.getItem("finalCharacter"));
+    const otherPlayers = party
+      .filter((p) => p.Name !== mainHero?.Name)
+      .map((p) => ({
+        ...p,
+        currentHP: typeof p.currentHP === "number" ? p.currentHP : p.HP,
+        id: p.id || `player-${p.Name}`,
+        Icon: p.Icon,
+      }));
+
+    // 2x3 grid: [front-left, front-center(hero), front-right, back-left, back-center, back-right]
+    const arrangedPlayers = Array(6).fill(null);
+
+    if (mainHero) {
+      arrangedPlayers[1] = {
+        ...mainHero,
+        id: "player-hero",
+        currentHP: mainHero.currentHP ?? mainHero.HP,
+        Icon: mainHero.Icon,
+      };
+    }
+
+    let otherIndex = 0;
+    for (let i = 0; i < arrangedPlayers.length; i++) {
+      if (arrangedPlayers[i] === null && otherPlayers[otherIndex]) {
+        arrangedPlayers[i] = {
+          ...otherPlayers[otherIndex],
+          currentHP:
+            otherPlayers[otherIndex].currentHP ?? otherPlayers[otherIndex].HP,
+        };
+        otherIndex++;
+      }
+    }
 
     const enemySetup = enemies.map((e, index) => ({
       ...e,
       id: e.id ?? `enemy-${index}`,
-      currentHP:
-        typeof e.currentHP === "number"
-          ? e.currentHP
-          : typeof e.maxHP === "number"
-          ? e.maxHP
-          : 1,
+      currentHP: typeof e.currentHP === "number" ? e.currentHP : e.HP,
     }));
 
-    setPlayers(playerSetup);
+    setPlayers(arrangedPlayers);
     setEnemyState(enemySetup);
 
-    const order = [...playerSetup, ...enemySetup].sort(
-      (a, b) => b.speed - a.speed
+    const order = [...arrangedPlayers.filter(Boolean), ...enemySetup].sort(
+      (a, b) => b.Speed - a.Speed
     );
     setTurnOrder(order);
     setCurrentTurnIndex(0);
@@ -61,21 +84,32 @@ function BattleManager({ enemies, onBattleEnd }) {
     if (battleOver || turnOrder.length === 0) return;
 
     const currentActor = turnOrder[currentTurnIndex];
-    if (currentActor.currentHP <= 0) {
+    if (!currentActor || currentActor.currentHP <= 0) {
       proceedToNextTurn();
       return;
     }
 
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       handleAction(currentActor);
     }, 1500);
+
+    return () => clearTimeout(timer);
   }, [currentTurnIndex, turnOrder, battleOver]);
 
   const handleAction = (actor) => {
+    if (!actor) return;
+
     let logs = [];
     let effects = [];
 
+    const livingPlayers = players.filter((p) => p && p.currentHP > 0);
+
     switch (actor.role) {
+      case "Hero":
+        ({ logs, effects } = heroAction(actor, players, enemyState));
+        applyEffects(effects, "enemy");
+        break;
+
       case "Fighter":
         ({ logs, effects } = fighterSlashAction(actor, players, enemyState));
         applyEffects(effects, "enemy");
@@ -124,24 +158,67 @@ function BattleManager({ enemies, onBattleEnd }) {
         applyEffects(effects, "both");
         break;
 
+      case "Elemental":
+        ({ logs, effects } = elementalBurstAction(actor, players, enemyState));
+        applyEffects(effects, "enemy");
+        break;
+
+      case "Giant":
+        ({ logs, effects } = giantSeismicAction(actor, players, enemyState));
+        applyEffects(effects, "enemy");
+        break;
+
+      case "WereWolf":
+        if (actor.form === "human") {
+          ({ logs, effects } = werewolfHumanAttackAction(
+            actor,
+            players,
+            enemyState
+          ));
+        } else {
+          ({ logs, effects } = werewolfBeastAttackAction(
+            actor,
+            players,
+            enemyState
+          ));
+        }
+        applyEffects(effects, "enemy");
+        break;
+
+      // Generic enemy attacks
       case "Goblin":
-        const livingPlayers = players.filter((p) => p.currentHP > 0);
+      case "Orc":
+      case "Spriggan":
+      case "NightMare":
         if (livingPlayers.length > 0) {
           const target =
             livingPlayers[Math.floor(Math.random() * livingPlayers.length)];
-          const damage = Math.max(1, actor.strength - target.defense);
-          const newPlayers = players.map((p) =>
-            p.id === target.id
-              ? { ...p, currentHP: Math.max(0, p.currentHP - damage) }
-              : p
-          );
-          setPlayers(newPlayers);
-          logs.push(`${actor.name} hits ${target.name} for ${damage} damage!`);
-        }
-        break;
+          const damage =
+            actor.role === "NightMare"
+              ? Math.max(1, actor.strength)
+              : Math.max(1, actor.strength - target.defense);
 
-      default:
-        logs.push(`${actor.name} does nothing.`);
+          setPlayers((prev) =>
+            prev.map((p) =>
+              p && p.id === target.id
+                ? { ...p, currentHP: Math.max(0, p.currentHP - damage) }
+                : p
+            )
+          );
+
+          const actionName =
+            actor.role === "NightMare"
+              ? "PhantomKick"
+              : actor.role === "Spriggan"
+              ? "Shenanigans"
+              : actor.role === "Orc"
+              ? "clubs"
+              : "hits";
+
+          logs.push(
+            `${actor.name} ${actionName} ${target.name} for ${damage} damage!`
+          );
+        }
         break;
     }
 
@@ -156,25 +233,28 @@ function BattleManager({ enemies, onBattleEnd }) {
         prev.map((e) => {
           const effect = effects.find((eff) => eff.targetId === e.id);
           if (effect && effect.type === "damage") {
+            const currentHP =
+              typeof e.currentHP === "number" ? e.currentHP : e.HP;
             return {
               ...e,
-              currentHP: Math.max(0, e.currentHP - effect.value),
+              currentHP: Math.max(0, currentHP - effect.value),
             };
           }
           return e;
         })
       );
-    } else if (targetType === "ally" || targetType === "both") {
+    }
+    if (targetType === "ally" || targetType === "both") {
       setPlayers((prev) =>
         prev.map((p) => {
+          if (!p) return null;
           const effect = effects.find((eff) => eff.targetId === p.id);
           if (effect && effect.type === "heal") {
+            const maxHP = typeof p.maxHP === "number" ? p.maxHP : p.HP;
+            const currentHP = typeof p.currentHP === "number" ? p.currentHP : 0;
             return {
               ...p,
-              currentHP: Math.min(
-                typeof p.maxHP === "number" ? p.maxHP : p.HP,
-                p.currentHP + effect.value
-              ),
+              currentHP: Math.min(maxHP, currentHP + effect.value),
             };
           }
           return p;
@@ -191,16 +271,18 @@ function BattleManager({ enemies, onBattleEnd }) {
 
   const checkBattleEnd = () => {
     const allEnemiesDead = enemyState.every((e) => e.currentHP <= 0);
-    const allPlayersDead = players.every((p) => p.currentHP <= 0);
+    const allPlayersDead = players
+      .filter(Boolean)
+      .every((p) => p.currentHP <= 0);
 
     if (allEnemiesDead) {
       setBattleLog((prev) => [...prev, "Victory! All enemies defeated."]);
       setBattleOver(true);
       setParty(
-        party.map((p, index) => ({
-          ...p,
-          currentHP: players[index]?.currentHP ?? p.HP,
-        }))
+        party.map((p) => {
+          const player = players.find((pl) => pl?.Name === p.Name);
+          return { ...p, currentHP: player?.currentHP ?? p.HP };
+        })
       );
       if (onBattleEnd) onBattleEnd(true);
     } else if (allPlayersDead) {
@@ -214,7 +296,7 @@ function BattleManager({ enemies, onBattleEnd }) {
     <div className="battle-container">
       <BattleField players={players} enemies={enemyState} />
       <div className="battle-log">
-        {battleLog.slice(-5).map((log, index) => (
+        {battleLog.slice(-6).map((log, index) => (
           <p key={index}>{log}</p>
         ))}
       </div>

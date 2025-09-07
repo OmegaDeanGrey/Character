@@ -45,6 +45,8 @@ function Rogue() {
       maxHP: baseHP,
       currentHP: baseHP,
       level: 1,
+      BG: rogueBase.BG,
+      Icon: rogueBase.Icon,
     };
   };
 

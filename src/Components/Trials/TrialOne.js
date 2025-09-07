@@ -5,7 +5,7 @@ import "./Trials.css";
 function TrialOne() {
   const navigate = useNavigate();
   const audioRef = useRef(null);
-  const [quizCompleted, setQuizCompleted] = useState(false);
+  // const [quizCompleted, setQuizCompleted] = useState(false);
 
   useEffect(() => {
     if (audioRef.current) {
@@ -15,10 +15,10 @@ function TrialOne() {
     }
 
     // Check localStorage for quiz completion flag
-    const completed = localStorage.getItem("quizCompleted");
-    if (completed) {
-      setQuizCompleted(true);
-    }
+    //   const completed = localStorage.getItem("quizCompleted");
+    //   if (completed) {
+    //     setQuizCompleted(true);
+    //   }
   }, []);
 
   return (
@@ -40,9 +40,9 @@ function TrialOne() {
           <button
             id="QuizButton"
             onClick={() => navigate("/Quiz")}
-            disabled={quizCompleted}
+            // disabled={quizCompleted}
           >
-            {quizCompleted ? "Test Complete" : "Begin Test"}
+            {/* {quizCompleted ? "Test Complete" : "Begin Test"} */}
           </button>
         </div>
 
@@ -55,7 +55,7 @@ function TrialOne() {
           onClick={() => {
             localStorage.removeItem("wisdom");
 
-            setQuizCompleted(false);
+            // setQuizCompleted(false);
           }}
         >
           Reset Quiz

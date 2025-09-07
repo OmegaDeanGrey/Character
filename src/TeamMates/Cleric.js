@@ -46,6 +46,8 @@ function Cleric() {
       maxHP: baseHP,
       currentHP: baseHP,
       level: 1,
+      BG: clericBase.BG,
+      Icon: clericBase.Icon,
     };
   };
 

@@ -49,6 +49,8 @@ function Archer() {
       maxHP: baseHP,
       currentHP: baseHP,
       level: 1,
+      BG: archerBase.BG,
+      Icon: archerBase.Icon,
     };
   };
 

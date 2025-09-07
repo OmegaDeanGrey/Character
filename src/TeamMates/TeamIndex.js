@@ -23,21 +23,15 @@ import WereWolf from "./WereWolf";
 import { useParty } from "../Components/Context/PartyContext.js";
 
 function TeamIndex() {
-  // const [show, setShow] = useState(false);
-  // const [showFighter, setShowFighter] = useState(false);
-  // const [showCleric, setShowCleric] = useState(false);
-
-  // const navigate = useNavigate();
-
-  // const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
-  // const handleCloseFighter = () => setShowFighter(false);
-  // const handleShowFighter = () => setShowFighter(true);
-  // const handleCloseCleric = () => setShowCleric(false);
-  // const handleShowCleric = () => setShowCleric(true);
-  // Obtain the checkout URL from your backend or payment provider
   const [selectedClass, setSelectedClass] = useState(null);
-  const { fullParty, removeFromParty, party } = useParty();
+  const {
+    fullParty,
+    removeFromParty,
+    party,
+    map1Trigger,
+    map2Trigger,
+    map3Trigger,
+  } = useParty();
   const [showDefault, setShowDefault] = useState(false);
 
   const toggleClass = (className) => {
@@ -84,35 +78,44 @@ function TeamIndex() {
           </button>
           <button
             className="TMB"
-            id="SummonerButton"
-            onClick={() => toggleClass("Summoner")}
-          >
-            Summoner
-          </button>
-          <button
-            className="TMB"
             id="RogueButton"
             onClick={() => toggleClass("Rogue")}
           >
             Rogue
           </button>
+          {map1Trigger && (
+            <button
+              className="TMB"
+              id="FairyButton"
+              onClick={() => toggleClass("Fairy")}
+            >
+              Fairy
+            </button>
+          )}
+          ;
+          {map2Trigger && (
+            <button
+              className="TMB"
+              id="SummonerButton"
+              onClick={() => toggleClass("Summoner")}
+            >
+              Summoner
+            </button>
+          )}
+          ;
         </div>
-        <div className="ButtonRows">
-          <button
-            className="TMB"
-            id="FairyButton"
-            onClick={() => toggleClass("Fairy")}
-          >
-            Fairy
-          </button>
-          <button
-            className="TMB"
-            id="VampButton"
-            onClick={() => toggleClass("Vamp")}
-          >
-            Vampire
-          </button>
 
+        <div className="ButtonRows">
+          {map3Trigger && (
+            <button
+              className="TMB"
+              id="VampButton"
+              onClick={() => toggleClass("Vamp")}
+            >
+              Vampire
+            </button>
+          )}
+          ;
           <button
             className="TMB"
             onClick={() => toggleClass("Elemental")}
@@ -364,7 +367,7 @@ function TeamIndex() {
         )}
       </div>
       <div className="ClassPanel">
-        {selectedClass === "Werewolf" && (
+        {selectedClass === "WereWolf" && (
           <div className="panel-content">
             <WereWolf />
             <button
@@ -484,6 +487,7 @@ function TeamIndex() {
                 setSelectedClass(null);
                 setShowDefault(true);
               }}
+              id="exitbutton"
             >
               Exit
             </button>
@@ -494,7 +498,16 @@ function TeamIndex() {
         {showDefault && (
           <div className="panel-content">
             {party.map((member, index) => (
-              <li key={index} className="defaultlist">
+              <li
+                key={index}
+                className="defaultlist"
+                style={{
+                  backgroundImage: `url(${member.Icon})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  color: "white", // optional, for readability on background
+                }}
+              >
                 {member.name} <br />
                 <br />
                 {member.role}

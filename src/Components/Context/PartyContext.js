@@ -10,6 +10,15 @@ export const useParty = () => useContext(PartyContext);
 export const PartyProvider = ({ children }) => {
   const [party, setParty] = useState([]);
   const [fullParty, setFullParty] = useState(false);
+  const [map1Trigger, setMap1Trigger] = useState(false);
+  const [map2Trigger, setMap2Trigger] = useState(false);
+  const [map3Trigger, setMap3Trigger] = useState(false);
+  const [map4Trigger, setMap4Trigger] = useState(false);
+  const [map5Trigger, setMap5Trigger] = useState(false);
+  const [map6Trigger, setMap6Trigger] = useState(false);
+  const [map7Trigger, setMap7Trigger] = useState(false);
+  const [map8Trigger, setMap8Trigger] = useState(false);
+  const [map9Trigger, setMap9Trigger] = useState(false);
   const [recruited, setRecruited] = useState("");
   const [characterName, setCharacterName] = useState("");
   const [characterStats, setCharacterStats] = useState([]);
@@ -64,6 +73,24 @@ export const PartyProvider = ({ children }) => {
         setCharacterName,
         characterStats,
         setCharacterStats,
+        map1Trigger,
+        setMap1Trigger,
+        map2Trigger,
+        setMap2Trigger,
+        map3Trigger,
+        setMap3Trigger,
+        map4Trigger,
+        setMap4Trigger,
+        map5Trigger,
+        setMap5Trigger,
+        map6Trigger,
+        setMap6Trigger,
+        map7Trigger,
+        setMap7Trigger,
+        map8Trigger,
+        setMap8Trigger,
+        map9Trigger,
+        setMap9Trigger,
       }}
     >
       {children}

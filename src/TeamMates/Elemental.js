@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParty } from "../Components/Context/PartyContext";
+import baseStatsByClass from "../Components/Character/BaseStats";
 
 function Elemental() {
   const [showOverlay, setShowOverlay] = useState(false);
@@ -15,73 +16,59 @@ function Elemental() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
-    }, 3000); // Change every 3 seconds
+    }, 2000); // Change every 3 seconds
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
+  const generateNewElemental = () => {
     const names = [
-      "Rod",
-      "Samuel",
-      "Arian",
-      "Asma",
-      "Ronald",
-      "Riley",
-      "Ron",
-      "Rawley",
-      "Ronpm start",
-      "Alice",
-      "Bob",
-      "Charlie",
-      "Diana",
-      "Eve",
-      "Frank",
-      "Mike",
-      "Joe",
-      "Drew",
-      "Kornebari",
-      "Valeria",
-      "Dot",
-      "Vaughn",
-      "Bean",
-      "Jake",
-      "Alicia",
-      "Bobby",
-      "Charles",
-      "Dana",
-      "Evan",
-      "Franklin",
-      "Mika",
-      "Joey",
-      "Dora",
-      "Barni",
-      "Valerie",
-      "Dottie",
-      "Vince",
+      "Ifrit",
+      "Shiva",
       "Ben",
-      "Jack",
+      "Sue",
+      "Reid",
+      "Johnny",
+      "Gaia",
+      "Sven",
+      "Umberto",
+      "Svetlana",
     ];
-    const randomName = names[Math.floor(Math.random() * names.length)];
-    const newElemental = {
+    const usedNames = new Set(party.map((member) => member.name));
+    const availableNames = names.filter((name) => !usedNames.has(name));
+    const randomName =
+      availableNames.length > 0
+        ? availableNames[Math.floor(Math.random() * availableNames.length)]
+        : `Elemental${Math.floor(Math.random() * 1000)}`;
+
+    const elementalBase = baseStatsByClass["Elemental"];
+    const baseHP = elementalBase.HP + Math.floor(Math.random() * 10);
+
+    return {
       name: randomName,
       role: "Elemental",
-      strength: Math.abs(Math.floor(Math.random() * 100) + 30),
-      intelligence: Math.abs(Math.floor(Math.random() * 100) - 30),
-      speed: Math.abs(Math.floor(Math.random() * 100) + 10),
-      defense: Math.abs(Math.floor(Math.random() * 100) + 10),
-      HP: Math.abs(Math.floor(Math.random() * 100) + 10),
+      strength: elementalBase.Strength + Math.floor(Math.random() * 10),
+      intelligence: elementalBase.Intelligence + Math.floor(Math.random() * 10),
+      speed: elementalBase.Speed + Math.floor(Math.random() * 10),
+      defense: elementalBase.Defense + Math.floor(Math.random() * 10),
+      maxHP: baseHP,
+      currentHP: baseHP,
+      level: 1,
     };
-    setElemental(newElemental);
+  };
+
+  useEffect(() => {
+    setElemental(generateNewElemental());
   }, []);
 
   const handleAddToParty = () => {
-    if (isPartyFull) return;
-    if (party.length < 5) addToParty(elemental);
-    if (!elemental) return;
+    if (isPartyFull || !elemental) return;
+
+    addToParty(elemental);
     setShowOverlay(true);
 
     setTimeout(() => {
-      setShowOverlay(false); // Hide overlay after 1 second
+      setShowOverlay(false);
+      setElemental(generateNewElemental()); // Generate a new unique fighter
     }, 3000);
   };
 
@@ -95,7 +82,7 @@ function Elemental() {
             left: 0,
             width: "100vw",
             height: "100vh",
-            backgroundColor: "rgba(19, 18, 18, 0.7)", // Semi-transparent black
+            backgroundColor: "rgba(143, 123, 240, 0.7)", // Semi-transparent black
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -105,7 +92,7 @@ function Elemental() {
         >
           <h1
             style={{
-              color: "black",
+              color: "orange",
               fontSize: "8rem",
               textShadow: "0 0 10px white, 0 0 20px grey",
               animation: "fadeIn 7s ease-out",
@@ -117,36 +104,31 @@ function Elemental() {
         </div>
       )}
 
+      {isPartyFull && (
+        <div>
+          <p id="PFFighter">Party Full</p>
+        </div>
+      )}
+
       <div className="containerdiv">
-        <div
-          id="Elementalall"
-          style={{
-            backgroundImage: `url(${images[index]})`,
-          }}
-        >
+        <div id="Elementalall" className={`elemental-bg bg-${index}`}>
           <h1 id="Elementaltitle">Elemental</h1>
           <div id="Elementaldesc">
-            <h2>Element Burst</h2>
+            <h2>Ability: Element Burst</h2>
 
             <p>Performs one of 4 attacks</p>
           </div>
           <div id="Elementalatt">
             <ul type="horizontal">
-              <div>
-                <li id="item1">Str: +0</li>
-              </div>
-              <div>
-                <li id="item2">Int: +30</li>
-              </div>
-              <div>
-                <li id="item3">Speed: +0</li>
-              </div>
-              <div>
-                <li id="item4">Defense: +0</li>
-              </div>
-              <div>
-                <li id="item5">HP: +0</li>
-              </div>
+              <li>Str: 10</li>
+
+              <li>Int: 60</li>
+
+              <li>Speed: 20</li>
+
+              <li>Defense: 30</li>
+
+              <li>HP: 30</li>
             </ul>
           </div>
           <div>
@@ -158,11 +140,7 @@ function Elemental() {
             >
               Recruit
             </button>
-            {isPartyFull && (
-              <div>
-                <p id="PFElemental">Party Full</p>
-              </div> // Disable button if the party is full
-            )}
+
             <button
               className="Elementalbutt"
               id="ElementalbttButton"

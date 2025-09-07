@@ -48,6 +48,8 @@ function Mage() {
       maxHP: baseHP,
       currentHP: baseHP,
       level: 1,
+      BG: mageBase.BG,
+      Icon: mageBase.Icon,
     };
   };
 
@@ -99,8 +101,8 @@ function Mage() {
       )}
       {isPartyFull && (
         <div>
-          <p id="PF">Party Full</p>
-        </div> // Disable button if the party is full
+          <p id="PFFighter">Party Full</p>
+        </div>
       )}
       <div className="containerdiv" id="mageall">
         <video muted autoPlay loop id="MageVid">

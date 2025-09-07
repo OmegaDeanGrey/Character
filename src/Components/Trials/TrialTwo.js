@@ -4,10 +4,28 @@ import "./Trials.css";
 import EE2 from "../Home/EE2";
 
 function TrialTwo() {
-  const [power, setPower] = useState(0);
-  const audioRef = useRef(null);
+  const [timeLeft, setTimeLeft] = useState(90); // 90 second timer
   const [trialTwoCompleted, setTrialTwoCompleted] = useState(false);
+  const audioRef = useRef(null);
+  const navigate = useNavigate();
 
+  // Timer countdown
+  useEffect(() => {
+    if (trialTwoCompleted) return;
+    if (timeLeft <= 0) {
+      // auto-complete when timer runs out
+      handleTrialCompletion(0);
+      return;
+    }
+
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => prev - 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [timeLeft, trialTwoCompleted]);
+
+  // Play background audio
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.play().catch((error) => {
@@ -16,15 +34,19 @@ function TrialTwo() {
     }
   }, []);
 
-  const navigate = useNavigate();
+  const handleTrialCompletion = (overrideTimeLeft = timeLeft) => {
+    let result = 1; // default
+    if (overrideTimeLeft > 15) {
+      result = 3;
+    } else if (overrideTimeLeft > 0) {
+      result = 2;
+    } else {
+      result = 1;
+    }
 
-  const handleTrialCompletion = () => {
-    // const strength = 70;
-    // localStorage.setItem(
-    //   "strengthResult",
-    //   JSON.stringify({ Strength: strength })
-    // );
-    localStorage.setItem("TrialTwoCompleted", "true");
+    localStorage.setItem("trialTwoCompleted", "true"); // ✅ consistent key
+    localStorage.setItem("trialtworesults", result.toString());
+
     setTrialTwoCompleted(true);
     navigate("/Trials");
   };
@@ -33,9 +55,11 @@ function TrialTwo() {
     <div id="TwoBodyDiv">
       <div id="bgTwo">
         <div id="Bannerbg2"></div>
-        <audio id="T2" autoPlay loop controls>
+
+        <audio ref={audioRef} id="T2" autoPlay loop controls>
           <source src="../Alignment.mp3" type="audio/mpeg" />
         </audio>
+
         <div>
           <button
             id="EE2"
@@ -46,18 +70,21 @@ function TrialTwo() {
             Tas
           </button>
         </div>
+
         <div>
           <button
             id="CompleteTrialTwoButton"
-            onClick={handleTrialCompletion}
+            onClick={() => handleTrialCompletion()}
             disabled={trialTwoCompleted}
           >
             Complete Trial
           </button>
           <p id="AlignmentTitle">Welcome to the Eagle's Nest</p>
         </div>
+
         <div>
           <h3 id="AlignmentText">Here your test is Simple</h3>
+          <p id="TrialTwoTimer">⏳ Time Remaining: {timeLeft}s</p>
         </div>
 
         <button
@@ -72,4 +99,5 @@ function TrialTwo() {
     </div>
   );
 }
+
 export default TrialTwo;

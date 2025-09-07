@@ -1,3 +1,46 @@
+//HERO ACTION
+export function heroAction(user, allies, enemies) {
+  const logs = [];
+  const effects = [];
+
+  // Separate front and back row enemies
+  const frontRowEnemies = enemies.filter(
+    (enemy, index) => index < 3 && enemy.currentHP > 0
+  );
+  const backRowEnemies = enemies.filter(
+    (enemy, index) => index >= 3 && enemy.currentHP > 0
+  );
+
+  let target = null;
+
+  if (frontRowEnemies.length > 0) {
+    target =
+      frontRowEnemies[Math.floor(Math.random() * frontRowEnemies.length)];
+  } else if (backRowEnemies.length > 0) {
+    target = backRowEnemies[Math.floor(Math.random() * backRowEnemies.length)];
+  }
+
+  if (target) {
+    // Physical damage: user.strength - target.defense
+    const rawDamage = user.strength - target.defense;
+    const damage = Math.max(1, rawDamage); // At least 1 damage
+
+    logs.push(
+      `${user.name} uses Slash on ${target.name} for ${damage} damage!`
+    );
+
+    effects.push({
+      type: "damage",
+      targetId: target.id,
+      value: damage,
+    });
+  } else {
+    logs.push(`${user.name} tried to Slash, but there were no valid targets!`);
+  }
+
+  return { logs, effects };
+}
+
 // FIGHTER ACTION
 export function fighterSlashAction(user, allies, enemies) {
   const logs = [];
@@ -48,16 +91,16 @@ export function clericHealingHandsAction(user, allies, enemies) {
 
   // Filter wounded allies
   const woundedAllies = allies.filter(
-    (ally) => ally.currentHP < (ally.maxHP ?? ally.HP)
+    (ally) => ally && (ally.currentHP ?? ally.HP) < (ally.maxHP ?? ally.HP)
   );
 
   if (woundedAllies.length === 0) {
     // No healing needed — attack like a Fighter
     const frontRowEnemies = enemies.filter(
-      (enemy, index) => index < 3 && enemy.currentHP > 0
+      (enemy, index) => enemy && index < 3 && enemy.currentHP > 0
     );
     const backRowEnemies = enemies.filter(
-      (enemy, index) => index >= 3 && enemy.currentHP > 0
+      (enemy, index) => enemy && index >= 3 && enemy.currentHP > 0
     );
 
     let target = frontRowEnemies.length
@@ -65,7 +108,7 @@ export function clericHealingHandsAction(user, allies, enemies) {
       : backRowEnemies[Math.floor(Math.random() * backRowEnemies.length)];
 
     if (target) {
-      const damage = Math.max(1, user.strength - target.defense);
+      const damage = Math.max(1, user.strength - (target.defense ?? 0));
       logs.push(
         `${user.name} swings their mace at ${target.name} for ${damage} damage!`
       );
@@ -82,25 +125,32 @@ export function clericHealingHandsAction(user, allies, enemies) {
     return { logs, effects };
   }
 
-  // Heal the ally with the lowest HP (absolute value)
+  // Heal the ally with the lowest current HP
   const target = woundedAllies.reduce((lowest, ally) => {
     const allyCurrent = ally.currentHP ?? 0;
-    return (lowest.currentHP ?? 0) > allyCurrent ? ally : lowest;
-  });
+    const lowestCurrent = lowest.currentHP ?? 0;
+    return allyCurrent < lowestCurrent ? ally : lowest;
+  }, woundedAllies[0]);
 
   const maxHP = target.maxHP ?? target.HP ?? 1;
   const currentHP = target.currentHP ?? 0;
   const healAmount = Math.min(user.intelligence * 2, maxHP - currentHP);
 
-  logs.push(
-    `${user.name} uses Healing Hands on ${target.name}, restoring ${healAmount} HP!`
-  );
+  if (healAmount > 0) {
+    logs.push(
+      `${user.name} uses Healing Hands on ${target.name}, restoring ${healAmount} HP!`
+    );
 
-  effects.push({
-    type: "heal",
-    targetId: target.id,
-    value: healAmount,
-  });
+    effects.push({
+      type: "heal",
+      targetId: target.id,
+      value: healAmount,
+    });
+  } else {
+    logs.push(
+      `${user.name} tried to heal ${target.name}, but they are at full HP!`
+    );
+  }
 
   return { logs, effects };
 }
@@ -343,3 +393,223 @@ export function vampireDrainAction(actor, players, enemies) {
 
   return { logs, effects };
 }
+
+//ELEMENTAL ACTION
+export function elementalBurstAction(user, allies, enemies) {
+  const logs = [];
+  const effects = [];
+
+  const livingEnemies = enemies.filter((e) => e.currentHP > 0);
+  if (livingEnemies.length === 0) {
+    logs.push(`${user.name} channels the elements, but there are no enemies!`);
+    return { logs, effects };
+  }
+
+  // Pick a random element (0 to 3)
+  const elementalChoice = Math.floor(Math.random() * 4);
+
+  // Pick random target
+  const target =
+    livingEnemies[Math.floor(Math.random() * livingEnemies.length)];
+
+  // Define elemental variants
+  const elements = [
+    {
+      name: "Flame Burst",
+      multiplier: 1.3,
+      type: "fire",
+    },
+    {
+      name: "Tidal Surge",
+      multiplier: 1.6,
+      type: "water",
+    },
+    {
+      name: "Gale Slash",
+      multiplier: 1.1,
+      type: "air",
+    },
+    {
+      name: "Quake Spike",
+      multiplier: 1.4,
+      type: "earth",
+    },
+  ];
+
+  const chosen = elements[elementalChoice];
+
+  // Damage is based on intelligence
+  const baseDamage =
+    Math.floor(user.intelligence * chosen.multiplier) - target.defense;
+  const damage = Math.max(1, baseDamage);
+
+  logs.push(
+    `${user.name} unleashes ${chosen.name} on ${target.name}, dealing ${damage} ${chosen.type} damage!`
+  );
+
+  effects.push({
+    type: "damage",
+    targetId: target.id,
+    value: damage,
+    damageType: chosen.type,
+  });
+
+  return { logs, effects };
+}
+
+//GIANT ACTION
+export function giantSeismicAction(user, allies, enemies) {
+  const logs = [];
+  const effects = [];
+
+  const frontRowEnemies = enemies.filter(
+    (_, index) => index < 3 && _.currentHP > 0
+  );
+  const backRowEnemies = enemies.filter(
+    (_, index) => index >= 3 && _.currentHP > 0
+  );
+  const frontRowAllies = allies.filter(
+    (_, index) => index < 3 && _.currentHP > 0
+  );
+
+  const outcome = Math.floor(Math.random() * 4); // 0–3
+  const damage = Math.floor(Math.random() * 6) + 5; // Low damage, 5–10
+
+  if (frontRowEnemies.length + backRowEnemies.length === 0 && outcome !== 3) {
+    logs.push(
+      `${user.name} tries to shake the ground, but there are no enemies!`
+    );
+    return { logs, effects };
+  }
+
+  switch (outcome) {
+    case 0: // Damage all enemies
+      logs.push(`${user.name} stomps the ground! A quake strikes all enemies!`);
+      enemies.forEach((enemy) => {
+        if (enemy.currentHP > 0) {
+          effects.push({
+            type: "damage",
+            targetId: enemy.id,
+            value: damage,
+            damageType: "physical",
+          });
+          logs.push(`${enemy.name} takes ${damage} damage!`);
+        }
+      });
+      break;
+
+    case 1: // Damage front row enemies only
+      logs.push(`${user.name} targets the front line with a violent tremor!`);
+      frontRowEnemies.forEach((enemy) => {
+        effects.push({
+          type: "damage",
+          targetId: enemy.id,
+          value: damage,
+          damageType: "physical",
+        });
+        logs.push(`${enemy.name} is rocked for ${damage} damage!`);
+      });
+      break;
+
+    case 2: // Damage front row of both teams
+      logs.push(`${user.name} causes tremors across the battlefield!`);
+      frontRowEnemies.forEach((enemy) => {
+        effects.push({
+          type: "damage",
+          targetId: enemy.id,
+          value: damage,
+          damageType: "physical",
+        });
+        logs.push(`${enemy.name} is hit for ${damage} damage!`);
+      });
+      frontRowAllies.forEach((ally) => {
+        effects.push({
+          type: "damage",
+          targetId: ally.id,
+          value: damage,
+          damageType: "physical",
+        });
+        logs.push(
+          `${ally.name} is caught in the quake and takes ${damage} damage!`
+        );
+      });
+      break;
+
+    case 3: // No damage, just flavor
+      logs.push(
+        `${user.name} slams the ground but pauses... gathering strength!`
+      );
+      break;
+  }
+
+  return { logs, effects };
+}
+
+//WEREWOLF ACTION
+// Human-form WereWolf attack — simple melee slash
+export const werewolfHumanAttackAction = (actor, players, enemies) => {
+  let logs = [];
+  let effects = [];
+
+  // Pick a random living enemy
+  const livingEnemies = enemies.filter((e) => e.currentHP > 0);
+  if (livingEnemies.length === 0) {
+    logs.push(`${actor.name} has no enemies to attack!`);
+    return { logs, effects };
+  }
+
+  const target =
+    livingEnemies[Math.floor(Math.random() * livingEnemies.length)];
+
+  // Damage calculation
+  const damage = Math.max(1, actor.strength - target.defense);
+  logs.push(`${actor.name} slashes at ${target.name} for ${damage} damage!`);
+
+  effects.push({
+    targetId: target.id,
+    type: "damage",
+    value: damage,
+  });
+
+  return { logs, effects };
+};
+
+// Beast-form WereWolf attack — stronger, maybe a double-hit
+export const werewolfBeastAttackAction = (actor, players, enemies) => {
+  let logs = [];
+  let effects = [];
+
+  const livingEnemies = enemies.filter((e) => e.currentHP > 0);
+  if (livingEnemies.length === 0) {
+    logs.push(`${actor.name} has no enemies to attack!`);
+    return { logs, effects };
+  }
+
+  const target =
+    livingEnemies[Math.floor(Math.random() * livingEnemies.length)];
+
+  // More aggressive damage calculation
+  const damage1 = Math.max(1, actor.strength + 5 - target.defense);
+  const damage2 = Math.max(1, actor.strength + 5 - target.defense);
+
+  logs.push(
+    `${actor.name} ferociously mauls ${target.name} for ${damage1} damage!`
+  );
+  logs.push(
+    `${actor.name} bites ${target.name} for an additional ${damage2} damage!`
+  );
+
+  effects.push({
+    targetId: target.id,
+    type: "damage",
+    value: damage1,
+  });
+
+  effects.push({
+    targetId: target.id,
+    type: "damage",
+    value: damage2,
+  });
+
+  return { logs, effects };
+};

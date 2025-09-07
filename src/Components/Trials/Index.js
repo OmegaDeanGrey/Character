@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Trials.css";
 import { useNavigate } from "react-router-dom";
 
 function TrialsIndex() {
   const navigate = useNavigate();
+  // const [trialFourDone, setTrialFourDone] = useState(false);
+
+  // useEffect(() => {
+  //   const result = localStorage.getItem("trialfourresult");
+  //   if (result) {
+  //     setTrialFourDone(true);
+  //   }
+  // }, []);
 
   return (
     <div id="OuterGrid">
+      <audio id="T4" autoPlay loop controls>
+        <source src="../FinalMidnight.mp3" type="audio/mpeg" />
+      </audio>
       <div>
         <button
           className="TrialButtonTop"
@@ -25,6 +36,7 @@ function TrialsIndex() {
           onClick={() => {
             navigate("/TrialFour");
           }}
+          // disabled={trialFourDone}
         >
           Volcanic Cave
         </button>

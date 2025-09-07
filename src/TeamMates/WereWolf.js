@@ -1,43 +1,66 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParty } from "../Components/Context/PartyContext";
+import baseStatsByClass from "../Components/Character/BaseStats";
+import "../App.css";
 
 function WereWolf() {
-  const [stats, setStats] = useState({});
   const [showOverlay, setShowOverlay] = useState(false);
   const navigate = useNavigate();
   const { party, addToParty } = useParty();
   const isPartyFull = party.length >= 5;
-  const [randomName, setRandomName] = useState("");
+  const [wereWolf, setWereWolf] = useState("null");
 
-  const [alert, setAlert] = useState("");
-  // useEffect(() => {
-  //   // Generate stats only once
-  //   setStats({
-  //     strength: Math.floor(Math.random() * 100),
-  //     intelligence: Math.floor(Math.random() * 100),
-  //     speed: Math.floor(Math.random() * 100),
-  //     defense: Math.floor(Math.random() * 100),
-  //     hp: Math.floor(Math.random() * 100),
-  //   });
-  // }, []);
+  const generateNewWerewolf = () => {
+    const names = [
+      "Lucien",
+      "Brenda",
+      "Chupa",
+      "Rue",
+      "Jackson",
+      "Moe",
+      "Taylor",
+      "Spot",
+      "Rover",
+      "Spot",
+    ];
 
-  const wereWolf = {
-    name: randomName,
-    strength: Math.abs(Math.floor(Math.random() * 100) + 30),
-    intelligence: Math.abs(Math.floor(Math.random() * 100) - 30),
-    speed: Math.abs(Math.floor(Math.random() * 100) + 10),
-    defense: Math.abs(Math.floor(Math.random() * 100) + 10),
-    HP: Math.abs(Math.floor(Math.random() * 100) + 10),
+    const usedNames = new Set(party.map((member) => member.name));
+    const availableNames = names.filter((name) => !usedNames.has(name));
+    const randomName =
+      availableNames.length > 0
+        ? availableNames[Math.floor(Math.random() * availableNames.length)]
+        : `WereWolf${Math.floor(Math.random() * 1000)}`;
+
+    const wereWolfBase = baseStatsByClass["WereWolf"];
+    const baseHP = wereWolfBase.HP + Math.floor(Math.random() * 10);
+
+    return {
+      name: randomName,
+      role: "WereWolf",
+      strength: wereWolfBase.Strength + Math.floor(Math.random() * 10),
+      intelligence: wereWolfBase.Intelligence + Math.floor(Math.random() * 10),
+      speed: wereWolfBase.Speed + Math.floor(Math.random() * 10),
+      defense: wereWolfBase.Defense + Math.floor(Math.random() * 10),
+      maxHP: baseHP,
+      currentHP: baseHP,
+      level: 1,
+    };
   };
 
+  useEffect(() => {
+    setWereWolf(generateNewWerewolf());
+  }, []);
+
   const handleAddToParty = () => {
-    if (isPartyFull) return;
-    if (party.length < 5) addToParty(wereWolf);
-    setRandomName();
+    if (isPartyFull || !wereWolf) return;
+
+    addToParty(wereWolf);
     setShowOverlay(true);
+
     setTimeout(() => {
-      setShowOverlay(false); // Hide overlay after 1 second
+      setShowOverlay(false);
+      setWereWolf(generateNewWerewolf()); // Generate a new unique fighter
     }, 3000);
   };
 
@@ -55,51 +78,69 @@ function WereWolf() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            zIndex: 199000,
+            zIndex: 9000,
           }}
         >
           <h1
             style={{
-              color: "white",
+              color: "yellow",
               fontSize: "8rem",
               textShadow: "0 0 10px black, 0 0 20px grey",
               animation: "fadeIn 3s ease-out",
             }}
           >
-            WereWolf - {wereWolf.name} <br />
+            WereWolf <br />
             Howuuuu
           </h1>
         </div>
       )}
-      <div className="containerdiv4">
-        <h1>WereWolf</h1>
-        <h2>Abilty: Transform</h2>
-        <br />
-        <typed>Transform Increases Stats</typed>
-        <ul>
-          <li>Str: -10</li>
-          <li>Int: +10</li>
-          <li>Speed: -10</li>
-          <li>Defense: -10</li>
-          <li>HP: +0</li>
-        </ul>
-        <button
-          id="WereWolfSelectButton"
-          onClick={handleAddToParty}
-          disabled={isPartyFull} // Disable button if the party is full
-          title={isPartyFull ? "Party is full" : ""} // Tooltip message
-          {...(isPartyFull ? "View Party" : "Party Full")}
-        >
-          Recruit
-        </button>
-        {isPartyFull && (
+
+      {isPartyFull && (
+        <div>
+          <p id="PFFighter">Party Full</p>
+        </div>
+      )}
+
+      <div className="containerdiv">
+        <div id="wereWolfall">
+          <video muted autoPlay playsInline id="MoonVid">
+            <source src="./Moonrise.mp4" type="video/mp4" />
+          </video>
+
+          <h1 id="wereWolftitle">WereWolf</h1>
+          <div className="desccanvas" id="wereWolfdesc">
+            <h2>Abilty: Transform</h2>
+
+            <p>Transform Increases Stats</p>
+          </div>
           <div>
-            <p id="PFWerewolf">Party Full</p>
-          </div> // Disable button if the party is full
-        )}
-        <button id="WereWolfbttButton" onClick={() => navigate("/TeamIndex")}>
-          Back to Team Index
-        </button>
+            <ul id="wereWolfadj">
+              <li>Str: 50</li>
+              <li>Int: 15</li>
+              <li>Spd: 37</li>
+              <li>Def: 35</li>
+              <li>HP: 20</li>
+            </ul>
+          </div>
+          <button
+            className="dabuttons"
+            id="wereWolfSelectButton"
+            onClick={handleAddToParty}
+            disabled={isPartyFull}
+          >
+            {/* <video id="MoonVid" muted loop preload="auto">
+            <source src="../../public/Moonrise.mp4" type="video/mp4" />
+          </video> */}
+            Recruit
+          </button>
+          <button
+            className="dabuttons"
+            id="wereWolfbttButton"
+            onClick={() => navigate("/Party")}
+          >
+            View Party
+          </button>
+        </div>
       </div>
     </>
   );

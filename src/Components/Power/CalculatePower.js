@@ -1,52 +1,70 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import elementPowers from "./ElementPower"; // adjust path if needed
 
 function CalculatePower() {
-  const [heroPower, setHeroPower] = useState();
+  const [heroPower, setHeroPower] = useState(null);
+  const [finalPower, setFinalPower] = useState(null);
+  const [element, setElement] = useState(null);
 
-  const trialOneResults = localStorage.getItem("T1Result");
-  const trialTwoResults = localStorage.getItem("T2Result");
-  const trialThreeResults = localStorage.getItem("T3Result");
-  const trialFourResults = localStorage.getItem("T4Result");
-  const trialFiveResults = localStorage.getItem("T5Result");
-  const trialSixResults = localStorage.getItem("T6Result");
-  const PowerIndex =
-    trialOneResults +
-    trialTwoResults +
-    trialThreeResults +
-    trialFourResults +
-    trialFiveResults +
-    trialSixResults;
+  useEffect(() => {
+    // Load characterStats to get element
+    const savedStats = localStorage.getItem("characterStats");
+    if (savedStats) {
+      const parsedStats = JSON.parse(savedStats);
+      setElement(parsedStats.Element);
+    }
 
-  if (PowerIndex == 0 - 10) {
-    setHeroPower("1");
-  }
-  if (PowerIndex == 10 - 20) {
-    setHeroPower("2");
-  }
-  if (PowerIndex == 20 - 30) {
-    setHeroPower("3");
-  }
-  if (PowerIndex == 30 - 40) {
-    setHeroPower("4");
-  }
-  if (PowerIndex == 40 - 50) {
-    setHeroPower("5");
-  }
-  if (PowerIndex == 50 - 60) {
-    setHeroPower("6");
-  }
-  if (PowerIndex == 60 - 70) {
-    setHeroPower("7");
-  }
-  if (PowerIndex == 70 - 80) {
-    setHeroPower("8");
-  }
-  if (PowerIndex == 80 - 90) {
-    setHeroPower("9");
-  }
-  if (PowerIndex == 90 - 100) {
-    setHeroPower("10");
-  }
-  return <>{heroPower}</>;
+    // Collect trial results
+    const trialOne = Number(localStorage.getItem("trialoneresults")) || 0;
+    const trialTwo = Number(localStorage.getItem("trialtworesults")) || 0;
+    const trialThree = Number(localStorage.getItem("trialthreeresults")) || 0;
+    const trialFour = Number(localStorage.getItem("trialfourresults")) || 0;
+    const trialFive = Number(localStorage.getItem("trialfiveresults")) || 0;
+    const trialSix = Number(localStorage.getItem("trialsixresults")) || 0;
+
+    const PowerIndex =
+      trialOne + trialTwo + trialThree + trialFour + trialFive + trialSix;
+
+    let heroLevel = 1;
+    if (PowerIndex >= 7 && PowerIndex <= 12) {
+      heroLevel = 2;
+    } else if (PowerIndex >= 13 && PowerIndex <= 18) {
+      heroLevel = 3;
+    }
+
+    setHeroPower(heroLevel);
+
+    // Save hero power level
+    localStorage.setItem("heroPowerLevel", heroLevel);
+  }, []);
+
+  useEffect(() => {
+    if (element && heroPower && elementPowers[element]) {
+      const power = elementPowers[element][heroPower];
+      setFinalPower(power);
+
+      // Save for battle usage
+      localStorage.setItem("finalCharacterPower", power);
+    }
+  }, [element, heroPower]);
+
+  return (
+    <div>
+      {heroPower && element && finalPower ? (
+        <>
+          <p>Hero Power Level: {heroPower}</p>
+          <p>
+            Element: <b>{element}</b>
+          </p>
+          <p>
+            Battle Power: <b>{finalPower}</b>
+          </p>
+        </>
+      ) : (
+        <p>Calculating power...</p>
+      )}
+    </div>
+  );
 }
+
 export default CalculatePower;

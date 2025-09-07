@@ -44,7 +44,16 @@ function Party() {
             <ol className="party-list">
               <h4 id="partylisttopper">SCROLL TO VIEW PARTY</h4>
               {party.map((member, index) => (
-                <li key={index} className="party-member-card">
+                <li
+                  key={index}
+                  className="party-member-card"
+                  style={{
+                    backgroundImage: `url(${member.BG})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    color: "white", // optional, for readability on background
+                  }}
+                >
                   <div className="card-header">
                     <h3>{member.name}</h3>
                     <span className="role-tag">{member.role}</span>

@@ -39,23 +39,21 @@ import BattleHome from "./Battle/BattleHome.js";
 import WesternWood from "./Battle/Velonia/WesternWood.js";
 import Sableheim from "./Battle/Velonia/Sableheim.js";
 import Dvasheld from "./Battle/Velonia/Dvasheld.js";
+import CounselRoom from "./Battle/Velonia/CounselRoom.js";
 import BattleField from "./Battle/Battlefield.js";
 import BressoneBattle from "./Battle/Velonia/BressonBattle.js";
 
 function Navbar() {
   const [showCharacterLink, setShowCharacterLink] = useState(false);
   const [showTrialsLink, setShowTrialsLink] = useState(false);
-  const [showShopLink, setShowShopLink] = useState(false);
   const [updateTrigger, setUpdateTrigger] = useState(0); // Force re-render
 
   useEffect(() => {
     const savedStats = localStorage.getItem("characterStats");
     setShowCharacterLink(!!savedStats);
-    setShowShopLink(true);
+
     const trialsEnabled = localStorage.getItem("trialsEnabled");
     setShowTrialsLink(trialsEnabled === "true");
-    const shopEnabled = localStorage.getItem("shopEnabled");
-    setShowShopLink(shopEnabled === "true");
   }, [updateTrigger]); // Re-run when updateTrigger changes
 
   const triggerUpdate = () => setUpdateTrigger((prev) => prev + 1);
@@ -74,11 +72,6 @@ function Navbar() {
             {showCharacterLink && (
               <li>
                 <Link to="/OnlyCharacter">Character</Link>
-              </li>
-            )}
-            {showShopLink && (
-              <li>
-                <Link to="/Shop">Shop</Link>
               </li>
             )}
             {showTrialsLink && (
@@ -155,6 +148,7 @@ function Navbar() {
         <Route path="/WesternWood" element={<WesternWood />} />
         <Route path="/Sableheim" element={<Sableheim />} />
         <Route path="/Dvasheld" element={<Dvasheld />} />
+        <Route path="/CounselRoom" element={<CounselRoom />} />
         <Route path="/BattleField" element={<BattleField />} />
         <Route path="/BressoneBattle" element={<BressoneBattle />} />
       </Routes>
